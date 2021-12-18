@@ -19,6 +19,11 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import Attributes from '../Attributes/Attributes.jsx';
+import Layers from '../Layers/Layers.jsx';
+import CheckInputs from '../CheckInputs/CheckInputs.jsx';
+import NextSteps from '../NextSteps/NextSteps.jsx';
+import Results from '../Results/Results.jsx';
 
 import './App.css';
 
@@ -38,7 +43,6 @@ function App() {
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
-
           {/* Visiting localhost:3000/about will show the about page. */}
           <Route
             // shows AboutPage at all times (logged in or not)
@@ -100,6 +104,11 @@ function App() {
             exact
             path="/home"
           >
+            <Layers />
+            <Attributes />
+            <CheckInputs />
+            <Results />
+            <NextSteps />
             {user.id ?
               // If the user is already logged in, 
               // redirect them to the /user page
@@ -109,7 +118,6 @@ function App() {
               <LandingPage />
             }
           </Route>
-
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
             <h1>404</h1>
@@ -117,7 +125,7 @@ function App() {
         </Switch>
         <Footer />
       </div>
-    </Router>
+      </Router>
   );
 }
 
