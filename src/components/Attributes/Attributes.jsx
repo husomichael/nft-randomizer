@@ -20,7 +20,7 @@ function Attributes(){
 
     return(
         <div>
-            {/* Append layers here. */}
+            {/* Append all layers here. */}
             <input 
             placeholder="Attribute Name"
             value={attribute} 

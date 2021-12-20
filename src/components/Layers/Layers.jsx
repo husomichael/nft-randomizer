@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 
@@ -8,6 +8,17 @@ function Layers(){
     const history = useHistory();
     const dispatch = useDispatch();
     const [inputLayer, setInputLayers] = useState('');
+    const layers = useSelector(store => store.layers)
+
+    useEffect(() =>{
+        fetchLayers();
+    }, []);
+
+    function fetchLayers(){
+        dispatch({
+            type: 'GET_LAYERS',
+        });
+    };
 
     function addLayer(){
         dispatch({
@@ -22,7 +33,6 @@ function Layers(){
     };
 
     return(
-
         <div>
             <p>Insert all of your projects layers. Note: Make sure the layer names are identical to your photoshop project's layer names.</p>
             <input 
@@ -30,8 +40,12 @@ function Layers(){
             value={inputLayer} 
             onChange={setInputLayers}
             />
-            <button onClick={addLayer}>+</button>
-            <span>Appended layers go here.</span>
+            <button onClick={addLayer}>Add Layer</button>
+            {layers.map(layer =>{
+                return(
+                    <div>{layer}</div>
+                )
+            })};
             <button onClick={goToAttributes}>Go To Attributes</button>
         </div>
     );

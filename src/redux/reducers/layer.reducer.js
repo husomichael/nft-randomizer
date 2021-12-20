@@ -1,6 +1,6 @@
 const layerReducer = (state = [], action) => {
     switch (action.type) {
-      case 'SET_LAYER':
+      case 'SET_LAYERS':
         return action.payload;
       default:
         return state;

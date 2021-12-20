@@ -10,15 +10,32 @@ function* addLayer(action){
             payload: {layer: action.payload}
         })
         yield put({
-            type: 'SET_LAYERS'
+            type: 'GET_LAYERS'
         })
     }catch(error){
         console.log('addLayer catch error:', error);
     };
 };
 
+function* getLayers(action){
+    console.log('in getLayers');
+    try{
+        const response = yield axios({
+            method: 'GET',
+            url: '/api/layers'
+        })
+        yield put({
+            type: 'SET_LAYERS',
+            payload: response.data
+        })
+    }catch(error){
+        console.log('getLayers error:', error);
+    };
+};
+
 function* layerSaga() {
     yield takeLatest('ADD_LAYER', addLayer);
+    yield takeLatest('GET_LAYERS', getLayers);
 };
   
 export default layerSaga;
