@@ -7,7 +7,7 @@ function Layers(){
 
     const history = useHistory();
     const dispatch = useDispatch();
-    const [inputLayer, setInputLayers] = useState('');
+    const [inputLayer, setInputLayer] = useState('');
     const layers = useSelector(store => store.layers)
 
     useEffect(() =>{
@@ -25,11 +25,15 @@ function Layers(){
             type: 'ADD_LAYER',
             payload: inputLayer
         });
-        setInputLayers('');
+        setInputLayer('');
     };
 
     function goToAttributes(){
         history.push('/attributes');
+    };
+
+    function setLayers(event){
+        setInputLayer(event.target.value);
     };
 
     return(
@@ -38,14 +42,14 @@ function Layers(){
             <input 
             placeholder="Add Layer" 
             value={inputLayer} 
-            onChange={setInputLayers}
+            onChange={setLayers}
             />
             <button onClick={addLayer}>Add Layer</button>
-            {layers.map(layer =>{
+            {/* {layers.map(layer =>{
                 return(
                     <div>{layer}</div>
                 )
-            })};
+            })} */}
             <button onClick={goToAttributes}>Go To Attributes</button>
         </div>
     );

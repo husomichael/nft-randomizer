@@ -99,16 +99,30 @@ function App() {
               <RegisterPage />
             }
           </Route>
-
+          <ProtectedRoute exact path="/layers">
+            <Layers />
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/attributes">
+            <Attributes />
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/checkinputs">
+            <CheckInputs />
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/results">
+            <Results />
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/nextsteps">
+            <NextSteps />
+          </ProtectedRoute>
           <Route
             exact
             path="/home"
           >
-            <Layers />
+            {/* <Layers />
             <Attributes />
             <CheckInputs />
             <Results />
-            <NextSteps />
+            <NextSteps /> */}
             {user.id ?
               // If the user is already logged in, 
               // redirect them to the /user page

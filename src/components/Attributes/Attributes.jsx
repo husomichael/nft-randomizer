@@ -18,6 +18,10 @@ function Attributes(){
         setAttribute('');
     };
 
+    function goToCheckInputs(){
+        history.push('/checkinputs');
+    };
+
     return(
         <div>
             {/* Append all layers here. */}

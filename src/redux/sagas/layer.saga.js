@@ -7,7 +7,7 @@ function* addLayer(action){
         const response = axios({
             method: 'POST',
             url: '/api/layers',
-            payload: {layer: action.payload}
+            data: {layer: action.payload}
         })
         yield put({
             type: 'GET_LAYERS'

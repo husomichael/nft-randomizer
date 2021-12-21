@@ -2,7 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-//Get layers from database
+//Get layers from database.
 router.get('/', (req, res) => {
     const queryText= `
         SELECT * FROM "layers"
@@ -18,20 +18,29 @@ router.get('/', (req, res) => {
 });
 
 /**
- * POST route template
+ * POST layer to database.
  */
 router.post('/', (req, res) => {
     console.log('layer post')
+    const layer = req.body.layer
+    console.log('req.body:', req.body);
+    console.log('req.user:', req.user);
     const queryText = `
-    INSERT INTO "layers" ("name", "project_id")
+    INSERT INTO "layers" ("layer_name", "project_id")
     VALUES ($1, $2);
     `;
     const queryValues = [
-        req.body,
-        //project id goes here
+        req.body.layer,
+        req.user.id
     ];
     pool.query(queryText, queryValues)
-    // .then(dbRes =>)
+        .then((dbRes) =>{
+            res.sendStatus(201);
+        })
+        .catch((dbErr) =>{
+            console.log('/layers POST err:', dbErr);
+            res.sendStatus(500);
+        });
 });
 
 module.exports = router;
