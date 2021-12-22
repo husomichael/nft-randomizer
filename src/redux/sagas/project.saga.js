@@ -35,7 +35,7 @@ function* getProjects(action){
 
 function* projectSaga() {
     yield takeLatest('ADD_PROJECT', addProject);
-    yield takeLatest('GET_PROJECTS', getProject);
+    yield takeLatest('GET_PROJECTS', getProjects);
 };
   
-export default layerSaga;
+export default projectSaga;

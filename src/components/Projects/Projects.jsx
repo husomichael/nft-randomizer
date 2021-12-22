@@ -39,15 +39,19 @@ function Projects(){
     return(
         <div>
             <p>Current Projects</p>
-            {/* map through projects here */}
+            {projects.map(project =>{
+                return(
+                    <div>{project.name}</div>
+                )
+            })}
             <p>Add a Project</p>
             <input
                 placeholder="Add a Project" 
                 value={inputProject} 
-                onChange={setInputProject}
+                onChange={setProjects}
             />
-            <button onClick={addProject}>Add Layer</button>
-            <button onClick={goToLayers}>Go To Attributes</button>
+            <button onClick={addProject}>Add a Project</button>
+            <button onClick={goToLayers}>Go to Layers</button>
         </div>
     );
 };

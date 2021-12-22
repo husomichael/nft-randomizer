@@ -24,6 +24,7 @@ import Layers from '../Layers/Layers.jsx';
 import CheckInputs from '../CheckInputs/CheckInputs.jsx';
 import NextSteps from '../NextSteps/NextSteps.jsx';
 import Results from '../Results/Results.jsx';
+import Projects from '../Projects/Projects.jsx';
 
 import './App.css';
 

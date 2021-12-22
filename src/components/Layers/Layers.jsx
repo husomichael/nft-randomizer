@@ -36,6 +36,10 @@ function Layers(){
         setInputLayer(event.target.value);
     };
 
+    function goToProjects(){
+        history.push('/projects');
+    };
+
     return(
         <div>
             <p>Insert all of your projects layers. Note: Make sure the layer names are identical to your photoshop project's layer names.</p>
@@ -45,12 +49,13 @@ function Layers(){
             onChange={setLayers}
             />
             <button onClick={addLayer}>Add Layer</button>
-            {/* {layers.map(layer =>{
+            {layers.map(layer =>{
                 return(
-                    <div>{layer}</div>
+                    <div>{layer.layer_name}</div>
                 )
-            })} */}
-            <button onClick={goToAttributes}>Go To Attributes</button>
+            })}
+            <button onClick={goToProjects}>Back To Projects</button>
+            <button onClick={goToAttributes}>Next To Attributes</button>
         </div>
     );
 };
