@@ -99,6 +99,9 @@ function App() {
               <RegisterPage />
             }
           </Route>
+          <ProtectedRoute exact path="/projects">
+            <Projects />
+          </ProtectedRoute>
           <ProtectedRoute exact path="/layers">
             <Layers />
           </ProtectedRoute>
@@ -118,11 +121,6 @@ function App() {
             exact
             path="/home"
           >
-            {/* <Layers />
-            <Attributes />
-            <CheckInputs />
-            <Results />
-            <NextSteps /> */}
             {user.id ?
               // If the user is already logged in, 
               // redirect them to the /user page
