@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
+import ProjectItem from '../ProjectItem/ProjectItem.jsx';
 
 
 function Projects(){
@@ -41,7 +42,9 @@ function Projects(){
             <p>Current Projects</p>
             {projects.map(project =>{
                 return(
-                    <div>{project.name}</div>
+                    <div>
+                        <ProjectItem project={project}/>
+                    </div>
                 )
             })}
             <p>Add a Project</p>
