@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
+import ProjectItem from '../ProjectItem/ProjectItem.jsx';
 
 
 function Projects(){
@@ -41,7 +42,9 @@ function Projects(){
             <p>Current Projects</p>
             {projects.map(project =>{
                 return(
-                    <div>{project.name}</div>
+                    <div key={project.id}>
+                        <ProjectItem project={project}/>
+                    </div>
                 )
             })}
             <p>Add a Project</p>
@@ -51,7 +54,6 @@ function Projects(){
                 onChange={setProjects}
             />
             <button onClick={addProject}>Add a Project</button>
-            <button onClick={goToLayers}>Go to Layers</button>
         </div>
     );
 };

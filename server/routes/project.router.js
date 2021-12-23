@@ -6,8 +6,9 @@ const router = express.Router();
 router.get('/', (req, res) => {
     const queryText= `
         SELECT * FROM "projects"
+        WHERE "user_id"=$1
     `;
-    pool.query(queryText)
+    pool.query(queryText, [req.user.id])
     .then(dbRes =>{
         res.send(dbRes.rows);
     })
@@ -40,6 +41,25 @@ router.post('/', (req, res) => {
         .catch((dbErr) =>{
             console.log('/projects POST err:', dbErr);
             res.sendStatus(500);
+        });
+});
+
+//DELETE project from database.
+router.delete('/:id', (req, res) =>{
+    console.log('**** project delete ****');
+    const projectToDelete = req.params.id
+    console.log('req.params:', req.params);
+    const queryText = `
+        DELETE FROM "projects"
+        WHERE "id"=$1;
+    `;
+    pool.query(queryText, [projectToDelete])
+        .then((dbRes) =>{
+            res.sendStatus(200);
+        })
+        .catch((dbErr) =>{
+            res.sendStatus(500);
+            console.log('/projects DELETE err:', dbErr);
         });
 });
 
