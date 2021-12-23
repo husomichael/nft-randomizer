@@ -5,8 +5,17 @@ const projectReducer = (state = [], action) => {
         default:
             return state;
     };
-  };
+};
+
+const selectedProjectReducer = (state = [], action) =>{
+    switch (action.type) {
+        case 'SELECT_PROJECT':
+            return action.payload;
+        default:
+            return state;
+    };
+};
   
   // user will be on the redux state at:
   // state.user
-  export default projectReducer;
+export default projectReducer;

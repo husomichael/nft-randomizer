@@ -1,14 +1,24 @@
 import {useDispatch} from 'react-redux';
+import {useHistory} from 'react-router-dom';
 
 function ProjectItem({project}){
 
     const dispatch = useDispatch();
+    const history = useHistory();
 
     function editProject(){
         dispatch({
             type: 'EDIT_PROJECT',
             payload: project.id
         });
+    };
+
+    function selectProject(){
+        dispatch({
+            type: 'SELECT_PROJECT',
+            payload: project.id
+        });
+        history.push('/layers');
     };
 
 
@@ -26,6 +36,7 @@ function ProjectItem({project}){
             {project.name}
             <button onClick={editProject}>Edit</button>
             <button onClick={deleteProject}>Delete</button>
+            <button onClick={selectProject}>Select</button>
         </div>
     )
 };

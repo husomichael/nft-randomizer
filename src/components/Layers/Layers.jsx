@@ -9,6 +9,9 @@ function Layers(){
     const dispatch = useDispatch();
     const [inputLayer, setInputLayer] = useState('');
     const layers = useSelector(store => store.layers)
+    const projects = useSelector(store => store.projects);
+
+    console.log('projects from store:', projects);
 
     useEffect(() =>{
         fetchLayers();
