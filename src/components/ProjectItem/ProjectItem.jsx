@@ -11,6 +11,9 @@ function ProjectItem({project}){
         });
     };
 
+
+    //TODO: Delete all references to layers, and attributes for project when deleted.
+    //Find a way to conditionally render EDITING a project.
     function deleteProject(){
         dispatch({
             type: 'DELETE_PROJECT',

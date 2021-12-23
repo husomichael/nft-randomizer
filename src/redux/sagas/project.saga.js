@@ -17,7 +17,7 @@ function* addProject(action){
     };
 };
 
-function* getProjects(action){
+function* getProjects(){
     console.log('in getProjects');
     try{
         const response = yield axios({
@@ -33,9 +33,25 @@ function* getProjects(action){
     };
 };
 
+function* deleteProject(action){
+    console.log('in deleteProject');
+    try{
+        const response = yield axios({
+            method: 'DELETE',
+            url: `/api/projects/${action.payload}`
+        })
+        yield put({
+            type: 'GET_PROJECTS'
+        })
+    }catch(error){
+        console.log('deleteProject error:', error);
+    }
+}
+
 function* projectSaga() {
     yield takeLatest('ADD_PROJECT', addProject);
     yield takeLatest('GET_PROJECTS', getProjects);
+    yield takeLatest('DELETE_PROJECT', deleteProject);
 };
   
 export default projectSaga;

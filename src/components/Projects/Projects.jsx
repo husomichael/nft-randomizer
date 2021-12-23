@@ -42,7 +42,7 @@ function Projects(){
             <p>Current Projects</p>
             {projects.map(project =>{
                 return(
-                    <div>
+                    <div key={project.id}>
                         <ProjectItem project={project}/>
                     </div>
                 )
@@ -54,7 +54,6 @@ function Projects(){
                 onChange={setProjects}
             />
             <button onClick={addProject}>Add a Project</button>
-            <button onClick={goToLayers}>Go to Layers</button>
         </div>
     );
 };
