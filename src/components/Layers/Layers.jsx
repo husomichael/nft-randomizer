@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory, useParams} from 'react-router-dom';
+import LayerItem from '../LayerItem/LayerItem.jsx';
 
 
 function Layers(){
@@ -15,7 +16,7 @@ function Layers(){
     useEffect(() =>{
         fetchLayers();
     }, []);
-    
+
     function fetchLayers(){
         dispatch({
             type: 'GET_LAYERS',
@@ -54,7 +55,9 @@ function Layers(){
             <button onClick={addLayer}>Add Layer</button>
             {layers.map(layer =>{
                 return(
-                    <div>{layer.layer_name}</div>
+                    <div key={layer.id}>
+                        <LayerItem layer={layer} />
+                    </div>
                 )
             })}
             <button onClick={goToProjects}>Back To Projects</button>
