@@ -2,15 +2,17 @@ import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
 function* addLayer(action){
+    const selectedProject = action.payload.project
     console.log('addLayer payload:', action.payload);
     try{
         const response = axios({
             method: 'POST',
             url: '/api/layers',
-            data: {layer: action.payload}
+            data: action.payload
         })
         yield put({
-            type: 'GET_LAYERS'
+            type: 'GET_LAYERS',
+            payload: selectedProject
         })
     }catch(error){
         console.log('addLayer catch error:', error);
@@ -22,7 +24,7 @@ function* getLayers(action){
     try{
         const response = yield axios({
             method: 'GET',
-            url: '/api/layers'
+            url: `/api/layers/${action.payload}`
         })
         yield put({
             type: 'SET_LAYERS',

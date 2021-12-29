@@ -40,7 +40,7 @@ function Projects(){
     return(
         <div>
             <p>Current Projects</p>
-            {projects.map(project =>{
+            {projects.projectReducer.map(project =>{
                 return(
                     <div key={project.id}>
                         <ProjectItem project={project}/>

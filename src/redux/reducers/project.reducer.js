@@ -1,3 +1,5 @@
+import { combineReducers } from "redux";
+
 const projectReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_PROJECTS':
@@ -18,4 +20,7 @@ const selectedProjectReducer = (state = [], action) =>{
   
   // user will be on the redux state at:
   // state.user
-export default projectReducer;
+export default combineReducers({
+    projectReducer,
+    selectedProjectReducer
+});

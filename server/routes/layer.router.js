@@ -2,12 +2,13 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-//Get layers from database.
-router.get('/', (req, res) => {
+//Get layers from database for selected project_id.
+router.get('/:id', (req, res) => {
     const queryText= `
         SELECT * FROM "layers"
+        WHERE "project_id"=$1
     `;
-    pool.query(queryText)
+    pool.query(queryText, [req.params.id])
     .then(dbRes =>{
         res.send(dbRes.rows);
     })
@@ -31,7 +32,7 @@ router.post('/', (req, res) => {
     `;
     const queryValues = [
         req.body.layer,
-        req.user.id
+        req.body.project
     ];
     pool.query(queryText, queryValues)
         .then((dbRes) =>{

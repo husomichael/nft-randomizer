@@ -18,7 +18,7 @@ function ProjectItem({project}){
             type: 'SELECT_PROJECT',
             payload: project.id
         });
-        history.push('/layers');
+        history.push(`/layers/`);
     };
 
 

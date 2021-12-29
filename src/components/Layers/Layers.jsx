@@ -1,32 +1,32 @@
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import {useHistory, useParams} from 'react-router-dom';
 
 
 function Layers(){
 
     const history = useHistory();
     const dispatch = useDispatch();
+    // const params = useParams();
     const [inputLayer, setInputLayer] = useState('');
     const layers = useSelector(store => store.layers)
-    const projects = useSelector(store => store.projects);
-
-    console.log('projects from store:', projects);
+    const projects = useSelector(store => store.projects)
 
     useEffect(() =>{
         fetchLayers();
     }, []);
-
+    
     function fetchLayers(){
         dispatch({
             type: 'GET_LAYERS',
+            payload: projects.selectedProjectReducer
         });
     };
 
     function addLayer(){
         dispatch({
             type: 'ADD_LAYER',
-            payload: inputLayer
+            payload: {layer: inputLayer, project: projects.selectedProjectReducer}
         });
         setInputLayer('');
     };
