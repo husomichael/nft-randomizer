@@ -1,4 +1,5 @@
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
 
 function AttributeItem({layer}){
@@ -8,17 +9,6 @@ function AttributeItem({layer}){
     const [attribute, setAttribute] = useState('');
     const [rarity, setRarity] = useState('');
     const attributes = useSelector(store => store.attributes);
-
-    useEffect(() =>{
-        fetchAttributes();
-    }, []);
-
-    function fetchAttributes(){
-        dispatch({
-            type: 'GET_ATTRIBUTES',
-            payload: layer.id
-        });
-    };
 
     // function editAttribute(){
     //     dispatch({
@@ -36,7 +26,15 @@ function AttributeItem({layer}){
     //         payload: layer.id
     //     });
     // };
+    console.log('attributes: ', attributes);
 
+    function setInputAttribute(event){
+        setAttribute(event.target.value);
+    };
+
+    function setInputRarity(event){
+        setRarity(event.target.value);
+    };
 
     function addAttribute(){
         dispatch({
@@ -53,6 +51,7 @@ function AttributeItem({layer}){
     return(
         <div>
             <h2>{layer.layer_name}</h2>
+            {/* <h3>Total Layer Rarity (Needs to be %100) </h3> {find a way to total up rarities per layers here}*/} 
             {attributes.map(attribute => {
                 return(
                     <div>
@@ -64,12 +63,12 @@ function AttributeItem({layer}){
             <input
                 placeholder="Attribute Name"
                 value={attribute} 
-                onChange={setAttribute}
+                onChange={setInputAttribute}
             />
             <input
                 placeholder="Set Rarity %"
                 value={rarity}
-                onChange={setRarity}
+                onChange={setInputRarity}
             />
             <button onClick={addAttribute}>Add Attribute</button>
             <button onClick={goToCheckInputs}>Check All Inputs</button>

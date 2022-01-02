@@ -6,6 +6,10 @@ import LayerItem from '../LayerItem/LayerItem.jsx';
 
 function Layers(){
 
+    //TODO:
+    //Rewrite routes to fill reducer, and base maps on reducer values rather than sql statements.
+    //Setup attributeItem routes to do the same.
+
     const history = useHistory();
     const dispatch = useDispatch();
     // const params = useParams();

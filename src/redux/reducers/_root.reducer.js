@@ -3,6 +3,7 @@ import errors from './errors.reducer';
 import user from './user.reducer';
 import layers from './layer.reducer';
 import projects from './project.reducer';
+import attributes from './attribute.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
   layers, //has all layers for current project
-  projects //has all projects for logged in user
+  projects, //has all projects for logged in user
+  attributes, //has all attributes for current layers
 });
 
 export default rootReducer;

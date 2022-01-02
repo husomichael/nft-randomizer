@@ -24,7 +24,7 @@ function* getAttributes(action){
     try{
         const response = yield axios({
             method: 'GET',
-            url: `/api/attributes/${action.payload}`
+            url: `/api/attributes`
         })
         yield put({
             type: 'SET_ATTRIBUTES',
@@ -37,7 +37,7 @@ function* getAttributes(action){
 
 function* attributeSaga() {
     yield takeLatest('ADD_ATTRIBUTE', addAttribute);
-    yield takeLatest('GET_Attributes', getAttributes);
+    yield takeLatest('GET_ATTRIBUTES', getAttributes);
 };
   
 export default attributeSaga;

@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from 'react-redux';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
 import AttributeItem from '../AttributeItem/AttributeItem.jsx';
 
@@ -11,7 +11,16 @@ function Attributes(){
     const dispatch = useDispatch();
     const history = useHistory();
     const layers = useSelector(store => store.layers);
-    const attributes = useSelector(store => store.attributes);
+
+    useEffect(() =>{
+        fetchAttributes();
+    }, []);
+
+    function fetchAttributes(){
+        dispatch({
+            type: 'GET_ATTRIBUTES',
+        });
+    };
 
     console.log(layers);
     return(

@@ -2,7 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-//Get project from database.
+//GET project from database for selected user_id.
 router.get('/', (req, res) => {
     const queryText= `
         SELECT * FROM "projects"
@@ -18,16 +18,14 @@ router.get('/', (req, res) => {
     });
 });
 
-/**
- * POST project to database.
- */
+//POST project to database.
 router.post('/', (req, res) => {
     console.log('project post')
     const project = req.body.project
     console.log('req.body:', req.body);
     console.log('req.user:', req.user);
     const queryText = `
-    INSERT INTO "projects" ("name", "user_id")
+    INSERT INTO "projects" ("project_name", "user_id")
     VALUES ($1, $2);
     `;
     const queryValues = [
