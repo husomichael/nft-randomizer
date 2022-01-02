@@ -11,6 +11,7 @@ function Attributes(){
     const dispatch = useDispatch();
     const history = useHistory();
     const layers = useSelector(store => store.layers);
+    const projects = useSelector(store => store.projects);
 
     useEffect(() =>{
         fetchAttributes();
@@ -26,6 +27,7 @@ function Attributes(){
     return(
         <div>
             {layers.map(layer =>{
+                if(layer.project_id == projects.selectedProjectReducer)
                 return(
                     <div key={layer.id}>
                         <AttributeItem layer={layer} />

@@ -33,7 +33,7 @@ function ProjectItem({project}){
 
     return(
         <div>
-            {project.name}
+            {project.project_name}
             <button onClick={editProject}>Edit</button>
             <button onClick={deleteProject}>Delete</button>
             <button onClick={selectProject}>Select</button>

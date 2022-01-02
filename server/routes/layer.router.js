@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
 
 //POST layer to database.
 router.post('/', (req, res) => {
-    console.log('layer post')
+    console.log('layer post', req.body)
     const layer = req.body.layer
     console.log('req.body:', req.body);
     console.log('req.user:', req.user);

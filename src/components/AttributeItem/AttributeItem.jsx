@@ -39,9 +39,10 @@ function AttributeItem({layer}){
     function addAttribute(){
         dispatch({
             type: 'ADD_ATTRIBUTE',
-            payload: attribute
+            payload: {attribute: attribute, rarity: rarity, layer: layer.id}
         });
         setAttribute('');
+        setRarity('');
     };
 
     function goToCheckInputs(){
@@ -53,10 +54,10 @@ function AttributeItem({layer}){
             <h2>{layer.layer_name}</h2>
             {/* <h3>Total Layer Rarity (Needs to be %100) </h3> {find a way to total up rarities per layers here}*/} 
             {attributes.map(attribute => {
+                if (layer.id == attribute.layer_id)
                 return(
                     <div>
-                    <p>{attribute.name}</p>
-                    <p>{attribute.rarity}</p>
+                    <li>{attribute.attribute_name}  {attribute.rarity_value}</li>
                     </div>
                 )
             })}

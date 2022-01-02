@@ -24,7 +24,6 @@ function Layers(){
     function fetchLayers(){
         dispatch({
             type: 'GET_LAYERS',
-            payload: projects.selectedProjectReducer
         });
     };
 
@@ -58,6 +57,7 @@ function Layers(){
             />
             <button onClick={addLayer}>Add Layer</button>
             {layers.map(layer =>{
+                if(layer.project_id == projects.selectedProjectReducer)
                 return(
                     <div key={layer.id}>
                         <LayerItem layer={layer} />

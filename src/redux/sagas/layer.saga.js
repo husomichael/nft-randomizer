@@ -24,7 +24,7 @@ function* getLayers(action){
     try{
         const response = yield axios({
             method: 'GET',
-            url: `/api/layers/${action.payload}`
+            url: '/api/layers'
         })
         yield put({
             type: 'SET_LAYERS',

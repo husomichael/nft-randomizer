@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
 
 //POST attribute to database
 router.post('/', (req, res) => {
-    const attribute = req.body.layer
+    console.log('attribute post:', req.body);
     const queryText = `
     INSERT INTO "attributes" ("attribute_name", "rarity_value", "layer_id", "user_id")
     VALUES ($1, $2, $3, $4);
