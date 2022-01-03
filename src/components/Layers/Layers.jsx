@@ -19,7 +19,21 @@ function Layers(){
 
     useEffect(() =>{
         fetchLayers();
+        fetchProjects();
+        fetchAttributes();
     }, []);
+
+    function fetchAttributes(){
+        dispatch({
+            type: 'GET_ATTRIBUTES',
+        });
+    };
+
+    function fetchProjects(){
+        dispatch({
+            type: 'GET_PROJECTS',
+        });
+    };
 
     function fetchLayers(){
         dispatch({

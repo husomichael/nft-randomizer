@@ -35,9 +35,25 @@ function* getAttributes(action){
     };
 };
 
+function* deleteAttribute(action){
+    console.log('in deleteAttribute');
+    try{
+        const response = yield axios({
+            method: 'DELETE',
+            url: `/api/attributes/${action.payload}`
+        })
+        yield put({
+            type: 'GET_ATTRIBUTES'
+        })
+    }catch(error){
+        console.log('deleteAttributes error:', error);
+    };
+};
+
 function* attributeSaga() {
     yield takeLatest('ADD_ATTRIBUTE', addAttribute);
     yield takeLatest('GET_ATTRIBUTES', getAttributes);
+    yield takeLatest('DELETE_ATTRIBUTE', deleteAttribute)
 };
   
 export default attributeSaga;

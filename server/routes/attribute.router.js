@@ -41,4 +41,23 @@ router.post('/', (req, res) => {
         });
 });
 
+//DELETE attribute from database.
+router.delete('/:id', (req, res) =>{
+    console.log('**** attribute delete ****');
+    const attributeToDelete = req.params.id
+    console.log('req.params:', req.params);
+    const queryText = `
+        DELETE FROM "attributes"
+        WHERE "id"=$1;
+    `;
+    pool.query(queryText, [attributeToDelete])
+        .then((dbRes) =>{
+            res.sendStatus(200);
+        })
+        .catch((dbErr) =>{
+            res.sendStatus(500);
+            console.log('/projects DELETE err:', dbErr);
+        });
+});
+
 module.exports = router;

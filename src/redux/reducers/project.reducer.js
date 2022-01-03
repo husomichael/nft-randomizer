@@ -20,4 +20,5 @@ const selectedProjectReducer = (state = [], action) =>{
 
 export default combineReducers({
     projectReducer,
+    selectedProjectReducer
 });

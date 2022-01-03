@@ -12,14 +12,29 @@ function Attributes(){
     const history = useHistory();
     const layers = useSelector(store => store.layers);
     const projects = useSelector(store => store.projects);
+    const attributes = useSelector(store => store.attributes);
 
     useEffect(() =>{
+        fetchProjects();
         fetchAttributes();
+        fetchLayers();
     }, []);
 
     function fetchAttributes(){
         dispatch({
             type: 'GET_ATTRIBUTES',
+        });
+    };
+
+    function fetchProjects(){
+        dispatch({
+            type: 'GET_PROJECTS',
+        });
+    };
+
+    function fetchLayers(){
+        dispatch({
+            type: 'GET_LAYERS',
         });
     };
 
@@ -34,7 +49,13 @@ function Attributes(){
                 if(layer.project_id == projects.selectedProjectReducer)
                 return(
                     <div key={layer.id}>
-                        <AttributeItem layer={layer} />
+                        <h2>{layer.layer_name}</h2>
+                        {attributes.map(attribute => {
+                        if (layer.id == attribute.layer_id)
+                            return(
+                                <div key={attribute.id}><AttributeItem attribute={attribute} /></div>
+                            )
+                        })}
                     </div>
                 )
             })}

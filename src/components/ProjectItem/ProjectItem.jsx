@@ -15,17 +15,10 @@ function ProjectItem({project}){
     };
 
     function selectProject(){
-        if(projects.selectedProjectReducer == []){
             dispatch({
-                type: 'SELECT_PROJECT',
+                type: 'SET_SELECTED_PROJECT',
                 payload: project.id
             });
-        }else{
-            dispatch({
-                type: 'CHANGE_PROJECT',
-                payload: project.id
-            });
-        };
         history.push(`/layers/`);
     };
 
