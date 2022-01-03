@@ -121,10 +121,13 @@ This code is also heavily commented. We recommend reading through the comments, 
 Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
 
 /////Things that are broken://///
-Client keeps freezing randomly. Refreshing resets reducers and loses data. Have to restart at select project.
-Inputs are 1 step behind. (Try swapping takeLatest to takeAll??)
+Client keeps freezing randomly. Refreshing resets reducers and loses data. Have to restart at select project. (useParams will fix this).
+Reducers are 1 step behind. (Try swapping takeLatest to takeAll??)
+^(They're posting to the server but the GET call is 1 step behind somehow.)
 
 /////Things to do://////
+Update database to have project_id foreign keys on layers and attributes
+to make useParams work with current code.
 Conditionals to not allow null inputs client side for names.
 Conditionals to not allow null inputs client side for rarity.
 Conditionals to check that all attribute rarities per layer add up to 100%. No more, no less. 

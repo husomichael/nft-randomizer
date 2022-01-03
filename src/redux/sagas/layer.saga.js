@@ -1,4 +1,4 @@
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeLatest, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
 function* addLayer(action){
@@ -12,8 +12,8 @@ function* addLayer(action){
         })
         yield put({
             type: 'GET_LAYERS',
-            payload: selectedProject
         })
+        console.log(response);
     }catch(error){
         console.log('addLayer catch error:', error);
     };
@@ -51,9 +51,9 @@ function* deleteLayer(action){
 };
 
 function* layerSaga() {
-    yield takeLatest('ADD_LAYER', addLayer);
-    yield takeLatest('GET_LAYERS', getLayers);
-    yield takeLatest('DELETE_LAYER', deleteLayer)
+    yield takeEvery('ADD_LAYER', addLayer);
+    yield takeEvery('GET_LAYERS', getLayers);
+    yield takeEvery('DELETE_LAYER', deleteLayer)
 };
   
 export default layerSaga;

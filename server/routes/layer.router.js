@@ -9,10 +9,10 @@ router.get('/', (req, res) => {
         WHERE "user_id"=$1
     `;
     pool.query(queryText, [req.user.id])
-    .then(dbRes =>{
+    .then((dbRes) =>{
         res.send(dbRes.rows);
     })
-    .catch(dbErr =>{
+    .catch((dbErr) =>{
         console.log('ERROR: get layers', dbErr);
         res.sendStatus(500);
     });
@@ -34,13 +34,13 @@ router.post('/', (req, res) => {
         req.user.id
     ];
     pool.query(queryText, queryValues)
-        .then((dbRes) =>{
-            res.sendStatus(201);
-        })
-        .catch((dbErr) =>{
-            console.log('/layers POST err:', dbErr);
-            res.sendStatus(500);
-        });
+    .then((dbRes) =>{
+        res.sendStatus(201);
+    })
+    .catch((dbErr) =>{
+        console.log('/layers POST err:', dbErr);
+        res.sendStatus(500);
+    });
 });
 
 //DELETE layer from database.

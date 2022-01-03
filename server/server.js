@@ -12,6 +12,7 @@ const userRouter = require('./routes/user.router');
 const layerRouter = require('./routes/layer.router');
 const projectRouter = require('./routes/project.router');
 const attributeRouter = require('./routes/attribute.router');
+const randomRouter = require('./routes/random.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -29,6 +30,7 @@ app.use('/api/user', userRouter);
 app.use('/api/layers', layerRouter);
 app.use('/api/projects', projectRouter);
 app.use('/api/attributes', attributeRouter);
+app.use('/api/random', randomRouter);
 
 // Serve static files
 app.use(express.static('build'));
