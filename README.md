@@ -119,3 +119,23 @@ This code is also heavily commented. We recommend reading through the comments, 
 ## Update Documentation
 
 Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
+
+/////Things that are broken://///
+Client keeps freezing randomly. Refreshing resets reducers and loses data. Have to restart at select project.
+Inputs are 1 step behind. (Try swapping takeLatest to takeAll??)
+
+/////Things to do://////
+Conditionals to not allow null inputs client side for names.
+Conditionals to not allow null inputs client side for rarity.
+Conditionals to check that all attribute rarities per layer add up to 100%. No more, no less. 
+Send user a notification on which layers don't meet requirement and their current totals.
+Maybe render totals per layer as reducer updates. (Loop through attributes per layer_id, add up, render to DOM.)
+Send off all layers and attributes per project with mint number.
+Setup mint saga and reducer.
+Setup mint router on server.
+Mint router on server should loop through to create randomizer switch / conditionals.
+Return randomized values to reducer.
+Use Spike code to change randomized values to CSV format.
+Setup download blob for CSV download of randomized data.
+Style.
+PUT ROUTES
