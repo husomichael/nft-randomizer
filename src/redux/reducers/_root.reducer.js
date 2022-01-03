@@ -4,6 +4,7 @@ import user from './user.reducer';
 import layers from './layer.reducer';
 import projects from './project.reducer';
 import attributes from './attribute.reducer';
+import random from './random.reducer';
 // import selectedProject from './selectedProject.reducer';
 
 // rootReducer is the primary reducer for our entire project
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   projects, //has all projects for logged in user
   attributes, //has all attributes for current layers
   // selectedProject, //stores current selected project for user
+  random,
 });
 
 export default rootReducer;
