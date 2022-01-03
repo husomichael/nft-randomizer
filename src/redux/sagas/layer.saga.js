@@ -35,9 +35,25 @@ function* getLayers(action){
     };
 };
 
+function* deleteLayer(action){
+    console.log('in deleteLayer');
+    try{
+        const response = yield axios({
+            method: 'DELETE',
+            url: `/api/layers/${action.payload}`
+        })
+        yield put({
+            type: 'GET_LAYERS'
+        })
+    }catch(error){
+        console.log('deleteLayer error:', error);
+    };
+};
+
 function* layerSaga() {
     yield takeLatest('ADD_LAYER', addLayer);
     yield takeLatest('GET_LAYERS', getLayers);
+    yield takeLatest('DELETE_LAYER', deleteLayer)
 };
   
 export default layerSaga;

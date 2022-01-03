@@ -12,9 +12,7 @@ function LayerItem({layer}){
             payload: layer.id
         });
     };
-
-
-    //TODO: Delete all references to layers, and attributes for project when deleted.
+    
     //Find a way to conditionally render EDITING a layer.
     function deleteLayer(){
         dispatch({

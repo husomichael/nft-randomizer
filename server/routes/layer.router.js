@@ -43,4 +43,23 @@ router.post('/', (req, res) => {
         });
 });
 
+//DELETE layer from database.
+router.delete('/:id', (req, res) =>{
+    console.log('**** layer delete ****');
+    const layerToDelete = req.params.id
+    console.log('req.params:', req.params);
+    const queryText = `
+        DELETE FROM "layers"
+        WHERE "id"=$1;
+    `;
+    pool.query(queryText, [layerToDelete])
+        .then((dbRes) =>{
+            res.sendStatus(200);
+        })
+        .catch((dbErr) =>{
+            res.sendStatus(500);
+            console.log('/projects DELETE err:', dbErr);
+        });
+});
+
 module.exports = router;
