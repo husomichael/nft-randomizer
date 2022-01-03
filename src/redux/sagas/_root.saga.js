@@ -5,7 +5,7 @@ import userSaga from './user.saga';
 import layerSaga from './layer.saga';
 import projectSaga from './project.saga';
 import attributeSaga from './attribute.saga';
-import selectedProjectSaga from './selectedProject.saga';
+// import selectedProjectSaga from './selectedProject.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -22,6 +22,6 @@ export default function* rootSaga() {
     layerSaga(),
     projectSaga(),
     attributeSaga(),
-    selectedProjectSaga(),
+    // selectedProjectSaga(),
   ]);
 };
