@@ -1,10 +1,11 @@
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 
 function ProjectItem({project}){
 
     const dispatch = useDispatch();
     const history = useHistory();
+    const projects = useSelector(store => store.projects);
 
     function editProject(){
         dispatch({
@@ -14,10 +15,17 @@ function ProjectItem({project}){
     };
 
     function selectProject(){
-        dispatch({
-            type: 'SELECT_PROJECT',
-            payload: project.id
-        });
+        if(projects.selectedProjectReducer == []){
+            dispatch({
+                type: 'SELECT_PROJECT',
+                payload: project.id
+            });
+        }else{
+            dispatch({
+                type: 'CHANGE_PROJECT',
+                payload: project.id
+            });
+        };
         history.push(`/layers/`);
     };
 

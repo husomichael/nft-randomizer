@@ -23,6 +23,10 @@ function Attributes(){
         });
     };
 
+    function goToCheckInputs(){
+        history.push('/checkinputs');
+    };
+
     console.log(layers);
     return(
         <div>
@@ -34,6 +38,7 @@ function Attributes(){
                     </div>
                 )
             })}
+            <button onClick={goToCheckInputs}>Check All Inputs</button>
         </div>
     );
 };

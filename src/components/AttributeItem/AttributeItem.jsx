@@ -45,10 +45,6 @@ function AttributeItem({layer}){
         setRarity('');
     };
 
-    function goToCheckInputs(){
-        history.push('/checkinputs');
-    };
-
     return(
         <div>
             <h2>{layer.layer_name}</h2>
@@ -72,7 +68,6 @@ function AttributeItem({layer}){
                 onChange={setInputRarity}
             />
             <button onClick={addAttribute}>Add Attribute</button>
-            <button onClick={goToCheckInputs}>Check All Inputs</button>
         </div>
     )
 };

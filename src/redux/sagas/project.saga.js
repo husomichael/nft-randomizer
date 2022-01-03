@@ -45,8 +45,8 @@ function* deleteProject(action){
         })
     }catch(error){
         console.log('deleteProject error:', error);
-    }
-}
+    };
+};
 
 function* projectSaga() {
     yield takeLatest('ADD_PROJECT', addProject);

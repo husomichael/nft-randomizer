@@ -1,16 +1,23 @@
 import {useDispatch, useSelector} from 'react-redux';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
+import AttributeItem from '../AttributeItem/AttributeItem.jsx';
 
 function CheckInputs(){
 
     const dispatch = useDispatch();
     const history = useHistory();
     const layers = useSelector(store => store.layers);
+    const projects = useSelector(store => store.projects);
+    const attributes = useSelector(store => store.attributes);
     const [mintNumber, setMintNumber] = useState('');
 
     function generateCsv(){
         console.log('in generateCsv');
+    };
+
+    function handleMintNumber(event){
+        setMintNumber(event.target.value);
     };
 
     return(
