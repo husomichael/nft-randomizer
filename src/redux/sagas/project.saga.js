@@ -4,7 +4,7 @@ import axios from 'axios';
 function* addProject(action){
     console.log('addProject payload:', action.payload);
     try{
-        const response = axios({
+        const response = yield axios({
             method: 'POST',
             url: '/api/projects',
             data: {project: action.payload}

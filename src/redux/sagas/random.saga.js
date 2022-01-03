@@ -4,7 +4,7 @@ import axios from 'axios';
 function* sendInputs(action){
     console.log('sendInputs payload:', action.payload);
     try{
-        const response = axios({
+        const response = yield axios({
             method: 'POST',
             url: '/api/random',
             data: action.payload

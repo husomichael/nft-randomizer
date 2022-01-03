@@ -5,7 +5,7 @@ function* addAttribute(action){
     const selectedLayer = action.payload.layer
     console.log('addAttribute payload:', action.payload);
     try{
-        const response = axios({
+        const response = yield axios({
             method: 'POST',
             url: '/api/attributes',
             data: action.payload

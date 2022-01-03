@@ -5,7 +5,7 @@ function* addLayer(action){
     const selectedProject = action.payload.project
     console.log('addLayer payload:', action.payload);
     try{
-        const response = axios({
+        const response = yield axios({
             method: 'POST',
             url: '/api/layers',
             data: action.payload

@@ -122,8 +122,6 @@ Customize this ReadMe and the code comments in this project to read less like a 
 
 /////Things that are broken://///
 Client keeps freezing randomly. Refreshing resets reducers and loses data. Have to restart at select project. (useParams will fix this).
-Reducers are 1 step behind. (Try swapping takeLatest to takeAll??)
-^(They're posting to the server but the GET call is 1 step behind somehow.)
 
 /////Things to do://////
 Update database to have project_id foreign keys on layers and attributes

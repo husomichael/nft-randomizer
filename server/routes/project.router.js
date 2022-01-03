@@ -33,13 +33,13 @@ router.post('/', (req, res) => {
         req.user.id
     ];
     pool.query(queryText, queryValues)
-        .then((dbRes) =>{
-            res.sendStatus(201);
-        })
-        .catch((dbErr) =>{
-            console.log('/projects POST err:', dbErr);
-            res.sendStatus(500);
-        });
+    .then((dbRes) =>{
+        res.sendStatus(201);
+    })
+    .catch((dbErr) =>{
+        console.log('/projects POST err:', dbErr);
+        res.sendStatus(500);
+    });
 });
 
 //DELETE project from database.
@@ -52,13 +52,13 @@ router.delete('/:id', (req, res) =>{
         WHERE "id"=$1;
     `;
     pool.query(queryText, [projectToDelete])
-        .then((dbRes) =>{
-            res.sendStatus(200);
-        })
-        .catch((dbErr) =>{
-            res.sendStatus(500);
-            console.log('/projects DELETE err:', dbErr);
-        });
+    .then((dbRes) =>{
+        res.sendStatus(200);
+    })
+    .catch((dbErr) =>{
+        res.sendStatus(500);
+        console.log('/projects DELETE err:', dbErr);
+    });
 });
 
 module.exports = router;
