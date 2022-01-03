@@ -1,16 +1,14 @@
 import { combineReducers } from "redux";
 
-const projectReducer = (state = [], action) => {
+const selectedProjectReducer = (state = [], action) =>{
     switch (action.type) {
-        case 'SET_PROJECTS':
+        case 'SET_SELECTED_PROJECT':
             return action.payload;
         default:
             return state;
     };
 };
-  
-  // user will be on the redux state at:
-  // state.user
+
 export default combineReducers({
-    projectReducer,
+    selectedProjectReducer
 });

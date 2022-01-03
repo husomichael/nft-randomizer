@@ -9,7 +9,7 @@ function* getSelectedProject(action){
             url: '/api/selectedProject'
         })
         yield put({
-            type: 'SELECT_PROJECT',
+            type: 'SET_SELECTED_PROJECT',
             payload: response.data
         })
     }catch(error){

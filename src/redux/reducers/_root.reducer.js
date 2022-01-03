@@ -4,6 +4,7 @@ import user from './user.reducer';
 import layers from './layer.reducer';
 import projects from './project.reducer';
 import attributes from './attribute.reducer';
+import selectedProject from './selectedProject.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   layers, //has all layers for current project
   projects, //has all projects for logged in user
   attributes, //has all attributes for current layers
+  selectedProject, //stores current selected project for user
 });
 
 export default rootReducer;
