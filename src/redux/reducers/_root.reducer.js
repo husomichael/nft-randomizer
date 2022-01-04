@@ -5,7 +5,7 @@ import layers from './layer.reducer';
 import projects from './project.reducer';
 import attributes from './attribute.reducer';
 import random from './random.reducer';
-// import selectedProject from './selectedProject.reducer';
+import selectedProject from './selectedProject.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -19,8 +19,8 @@ const rootReducer = combineReducers({
   layers, //has all layers for current project
   projects, //has all projects for logged in user
   attributes, //has all attributes for current layers
-  // selectedProject, //stores current selected project for user
-  random,
+  selectedProject, //stores current selected project for user
+  random, //stores values after being randomized on server
 });
 
 export default rootReducer;

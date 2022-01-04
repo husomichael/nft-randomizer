@@ -1,12 +1,11 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
-function AttributeLayerItem({layer}){
+function AttributeLayerItem({layer, params}){
 
     const dispatch = useDispatch();
-    const history = useHistory();
-    const attributes = useSelector(store => store.attributes);
     const projects = useSelector(store => store.projects.selectedProjectReducer);
     const [inputAttribute, setInputAttribute] = useState('');
     const [inputRarity, setInputRarity] = useState('');
@@ -23,7 +22,7 @@ function AttributeLayerItem({layer}){
     function addAttribute(){
         dispatch({
             type: 'ADD_ATTRIBUTE',
-            payload: {attribute: inputAttribute, rarity: inputRarity, layer: layer.id, project: projects}
+            payload: {attribute: inputAttribute, rarity: inputRarity, layer: layer.id, project: params}
         });
         setInputAttribute('');
         setInputRarity('');

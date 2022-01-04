@@ -101,16 +101,16 @@ function App() {
           <ProtectedRoute exact path="/projects">
             <Projects />
           </ProtectedRoute>
-          <ProtectedRoute exact path="/layers">
+          <ProtectedRoute exact path="/layers/:id">
             <Layers />
           </ProtectedRoute>
-          <ProtectedRoute exact path="/attributes">
+          <ProtectedRoute exact path="/attributes/:id">
             <Attributes />
           </ProtectedRoute>
-          <ProtectedRoute exact path="/checkinputs">
+          <ProtectedRoute exact path="/checkinputs/:id">
             <CheckInputs />
           </ProtectedRoute>
-          <ProtectedRoute exact path="/results">
+          <ProtectedRoute exact path="/results/:id">
             <Results />
           </ProtectedRoute>
           <ProtectedRoute exact path="/nextsteps">

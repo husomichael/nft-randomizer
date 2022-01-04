@@ -7,7 +7,7 @@ function AttributeItem({attribute}){
     const dispatch = useDispatch();
     const history = useHistory();
     const attributes = useSelector(store => store.attributes);
-    const projects = useSelector(store => store.projects.selectedProjectReducer);
+    const projects = useSelector(store => store.selectedProject);
 
     function deleteAttribute(){
         dispatch({

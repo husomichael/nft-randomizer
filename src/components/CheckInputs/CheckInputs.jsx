@@ -1,12 +1,12 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {useState, useEffect} from 'react';
-import {useHistory} from 'react-router-dom';
-import AttributeItem from '../AttributeItem/AttributeItem.jsx';
+import {useHistory, useParams} from 'react-router-dom';
 
 function CheckInputs(){
 
     const dispatch = useDispatch();
     const history = useHistory();
+    const params = useParams();
     const layers = useSelector(store => store.layers);
     const projects = useSelector(store => store.projects);
     const attributes = useSelector(store => store.attributes);
@@ -43,7 +43,7 @@ function CheckInputs(){
         let inputLayers = [];
         let inputAttributes = [];
         for (let layer of layers){
-            if(layer.project_id == projects.selectedProjectReducer){
+            if(layer.project_id == params.id){
                 inputLayers.push(layer);
                 for(let attribute of attributes){
                     if(attribute.layer_id == layer.id){
@@ -66,15 +66,35 @@ function CheckInputs(){
         setMintNumber(event.target.value);
     };
 
+    function goToAttributes(){
+        history.push(`/attributes/${params.id}`);
+    };
+
     return(
         <div>
-            {/* append layers */}
-            {/* append attributes and their rarities */}
+            {layers.map(layer =>{
+                if(layer.project_id == params.id)
+                return(
+                    <div>
+                        <h2 key={layer.id}>{layer.layer_name}</h2>
+                        {attributes.map(attribute =>{
+                            if(attribute.layer_id == layer.id)
+                            return(
+                                <div>
+                                    {attribute.attribute_name}
+                                    {attribute.rarity_value}
+                                </div>
+                            )
+                        })}
+                    </div>
+                )
+            })}
             <input
             placeholder="Number to Mint"
             value={mintNumber}
             onChange={handleMintNumber}
             />
+            <button onClick={goToAttributes}>Back To Attributes</button>
             <button onClick={sendInputs}>Generate</button>
         </div>
     );

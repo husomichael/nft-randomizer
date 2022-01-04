@@ -15,11 +15,18 @@ function ProjectItem({project}){
     };
 
     function selectProject(){
+        if(projects == []){
             dispatch({
-                type: 'SET_SELECTED_PROJECT',
+                type: 'SELECT_PROJECT',
                 payload: project.id
             });
-        history.push(`/layers/`);
+        }else{
+            dispatch({
+                type: 'CHANGE_PROJECT',
+                payload: project.id
+            });
+        };
+        history.push(`/layers/${project.id}`);
     };
 
 

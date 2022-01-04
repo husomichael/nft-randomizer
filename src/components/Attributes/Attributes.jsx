@@ -1,19 +1,16 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {useState, useEffect} from 'react';
-import {useHistory} from 'react-router-dom';
+import {useHistory, useParams} from 'react-router-dom';
 import AttributeItem from '../AttributeItem/AttributeItem.jsx';
 import AttributeLayerItem from '../AttributeLayerItem/AttributeLayerItem.jsx';
 
 function Attributes(){
 
-    const [selectedLayer, setSelectedLayer] = useState('');
     const dispatch = useDispatch();
     const history = useHistory();
     const layers = useSelector(store => store.layers);
-    const projects = useSelector(store => store.projects);
     const attributes = useSelector(store => store.attributes);
-    const [inputAttribute, setInputAttribute] = useState('');
-    const [inputRarity, setInputRarity] = useState('');
+    const params = useParams();
 
     useEffect(() =>{
         fetchProjects();
@@ -40,25 +37,11 @@ function Attributes(){
     };
 
     function goToCheckInputs(){
-        history.push('/checkinputs');
+        history.push(`/checkinputs/${params.id}`);
     };
 
-    function setAttribute(event){
-        setInputAttribute(event.target.value);
-    };
-
-    function setRarity(event){
-        setInputRarity(event.target.value);
-    };
-
-
-    function addAttribute(){
-        dispatch({
-            type: 'ADD_ATTRIBUTE',
-            payload: {attribute: attribute, rarity: rarity, layer: layer.id, project: projects}
-        });
-        setAttribute('');
-        setRarity('');
+    function goToLayers(){
+        history.push(`/layers/${params.id}`);
     };
 
     console.log(layers);
@@ -66,19 +49,22 @@ function Attributes(){
     return(
         <div>
             {layers.map(layer =>{
-                if(layer.project_id == projects.selectedProjectReducer)
+                if(layer.project_id == params.id)
                 return(
                     <div key={layer.id}>
-                        <AttributeLayerItem layer={layer} />
+                        <AttributeLayerItem layer={layer} params={params.id} />
                         {attributes.map(attribute => {
                         if (layer.id == attribute.layer_id)
                             return(
-                                <div key={attribute.id}><AttributeItem attribute={attribute} /></div>
+                                <div key={attribute.id}>
+                                    <AttributeItem attribute={attribute} />
+                                </div>
                             )
                         })}
                     </div>
                 )
             })}
+            <button onClick={goToLayers}>Back To Layers</button>
             <button onClick={goToCheckInputs}>Check All Inputs</button>
         </div>
     );

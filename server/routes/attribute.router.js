@@ -22,14 +22,15 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     console.log('attribute post:', req.body);
     const queryText = `
-    INSERT INTO "attributes" ("attribute_name", "rarity_value", "layer_id", "user_id")
-    VALUES ($1, $2, $3, $4);
+    INSERT INTO "attributes" ("attribute_name", "rarity_value", "layer_id", "user_id", "project_id")
+    VALUES ($1, $2, $3, $4, $5);
     `;
     const queryValues = [
         req.body.attribute,
         req.body.rarity,
         req.body.layer,
-        req.user.id
+        req.user.id,
+        req.body.project
     ];
     pool.query(queryText, queryValues)
         .then((dbRes) =>{

@@ -140,3 +140,5 @@ Use Spike code to change randomized values to CSV format.
 Setup download blob for CSV download of randomized data.
 Style.
 PUT ROUTES
+UPDATE projects table to have boolean value for current selected project.
+(If you want your app to be smart about what the “active” project for a given user is, it might be nifty to add a "isCurrent" boolean to your "projects" table.)
