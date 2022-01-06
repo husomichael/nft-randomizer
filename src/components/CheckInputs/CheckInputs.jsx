@@ -75,12 +75,12 @@ function CheckInputs(){
             {layers.map(layer =>{
                 if(layer.project_id == params.id)
                 return(
-                    <div>
-                        <h2 key={layer.id}>{layer.layer_name}</h2>
+                    <div key={layer.id}>
+                        <h2>{layer.layer_name}</h2>
                         {attributes.map(attribute =>{
                             if(attribute.layer_id == layer.id)
                             return(
-                                <div>
+                                <div key={attribute.id}>
                                     {attribute.attribute_name}
                                     {attribute.rarity_value}
                                 </div>

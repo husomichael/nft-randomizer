@@ -37,10 +37,31 @@ router.post('/', (req, res) => {
             };//end for of selectedAttribute loop.
 
         };//end for of layers loop
+
+        // for(let check of returnArray){
+        //     console.log('check', check);
+        //     console.log('rowArray:', rowArray);
+        //     if(rowArray == check){
+        //         console.log('Duplicate found!');
+        //         console.log('returnArray:', check);
+        //         console.log('rowArray:', rowArray);
+        //     }else{
+        //         returnArray.push(rowArray);
+        //     };
+        // };//end for of returnArray uniqueness check loop.
+
+        // //Conditional can't run without first being populated.
+        // if (returnArray = []){
+        //     returnArray.push(rowArray);
+        // };
         returnArray.push(rowArray);
+        //Reset row array for next row.
         rowArray = [];
+
     };//End mint number for loop
+
     console.log('returnArray:', returnArray);
+    res.send(returnArray);
 }); // End /random POST
 
 module.exports = router;

@@ -11,6 +11,7 @@ function* sendInputs(action){
         })
         yield put({
             type: 'SET_RANDOM',
+            payload: response.data
         })
         console.log(response);
     }catch(error){
