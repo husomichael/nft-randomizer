@@ -60,6 +60,7 @@ function CheckInputs(){
         console.log('inputLayers:', inputLayers);
         console.log('inputAttributes:', inputAttributes);
         console.log('mintNumber', mintNumber);
+        history.push(`/results/${params.id}`);
     };
 
     function handleMintNumber(event){
