@@ -14,27 +14,19 @@ router.post('/', (req, res) => {
     let rowArray = [];
     let rarityRange = 0;
     let roll = 0;
-    let attributesForLayer = [];
     for(let i = 0; i<project.number; i++){
         for (let layer of project.layers){
             rarityRange = 0;
-            attributesForLayer = [];
             roll = randomInt();
 
             for(let attribute of project.attributes){
-                if(attribute.layer_id == layer.id){
-                    attributesForLayer.push(attribute);
+                if(attribute.layer_id == layer.id && roll > rarityRange && roll <= (rarityRange + attribute.rarity_value)){
+                    rowArray.push(attribute.attribute_name);
+                    rarityRange+= attribute.rarity_value
+                }else if(attribute.layer_id == layer.id){
+                    rarityRange += attribute.rarity_value;
                 };
-            };//end for of all attributes filter for layer loop
-
-            for(let selectedAttribute of attributesForLayer){
-                if(roll > rarityRange && roll <= (rarityRange + selectedAttribute.rarity_value)){
-                    rowArray.push(selectedAttribute.attribute_name);
-                    rarityRange+= selectedAttribute.rarity_value
-                }else{
-                    rarityRange += selectedAttribute.rarity_value;
-                };
-            };//end for of selectedAttribute loop.
+            };//end pushing 1 randomized attribute loop.
 
         };//end for of layers loop
 
