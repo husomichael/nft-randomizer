@@ -82,8 +82,7 @@ function CheckInputs(){
                             if(attribute.layer_id == layer.id)
                             return(
                                 <div key={attribute.id}>
-                                    {attribute.attribute_name}
-                                    {attribute.rarity_value}
+                                    {attribute.attribute_name} - {attribute.rarity_value}%
                                 </div>
                             )
                         })}

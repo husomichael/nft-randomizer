@@ -15,6 +15,15 @@ router.post('/', (req, res) => {
     let rarityRange = 0;
     let roll = 0;
     for(let i = 0; i<project.number; i++){
+        if(i == 0){
+            rowArray.push('id');
+            for (let layer of project.layers){
+                rowArray.push(layer.layer_name);
+            };
+            returnArray.push(rowArray);
+        };
+        rowArray = [];
+        rowArray.push(i);
         for (let layer of project.layers){
             rarityRange = 0;
             roll = randomInt();
