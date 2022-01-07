@@ -23,8 +23,9 @@ import CheckInputs from '../CheckInputs/CheckInputs.jsx';
 import NextSteps from '../NextSteps/NextSteps.jsx';
 import Results from '../Results/Results.jsx';
 import Projects from '../Projects/Projects.jsx';
-import EditProject from '../EditProject/EditProject';
-import EditLayer from '../EditLayer/EditLayer';
+import EditProject from '../EditProject/EditProject.jsx';
+import EditLayer from '../EditLayer/EditLayer.jsx';
+import EditAttribute from '../EditAttribute/EditAttribute.jsx';
 
 import './App.css';
 
@@ -123,6 +124,9 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute exact path="/editlayer/:id">
             <EditLayer />
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/editattribute/:id">
+            <EditAttribute />
           </ProtectedRoute>
           <Route
             exact

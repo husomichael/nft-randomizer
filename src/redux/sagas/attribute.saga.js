@@ -50,10 +50,44 @@ function* deleteAttribute(action){
     };
 };
 
+function* fetchOneAttribute(action) {
+    try{
+        const response = yield axios({
+            method: 'GET',
+            url: `/api/attributes/edit/${action.payload}`
+        })
+        const attributeToEdit = response.data;
+        yield put({
+            type: 'SET_ATTRIBUTE_TO_EDIT',
+            payload: attributeToEdit
+        })
+    } catch (err) {
+        console.log(err);
+    };
+};
+  
+function* editAttribute(action) {
+    try{
+        console.log('editAttribute action.payload', action.payload)
+        yield axios({
+            method: 'PUT',
+            url: `/api/attributes/edit/${action.payload.id}`,
+            data: action.payload
+        })
+        yield put({
+            type: 'GET_ATTRIBUTES'
+        })
+    } catch (err) {
+        console.log(err)
+    };
+};
+
 function* attributeSaga() {
     yield takeLatest('ADD_ATTRIBUTE', addAttribute);
     yield takeLatest('GET_ATTRIBUTES', getAttributes);
-    yield takeLatest('DELETE_ATTRIBUTE', deleteAttribute)
+    yield takeLatest('DELETE_ATTRIBUTE', deleteAttribute);
+    yield takeLatest('FETCH_ONE_ATTRIBUTE', fetchOneAttribute);
+    yield takeLatest('EDIT_ATTRIBUTE', editAttribute);
 };
   
 export default attributeSaga;

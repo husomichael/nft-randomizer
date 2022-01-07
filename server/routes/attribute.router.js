@@ -61,4 +61,47 @@ router.delete('/:id', (req, res) =>{
         });
 });
 
+//Get one attribute for editing.
+router.get('/edit/:id', (req, res) => {
+    const sqlText = `
+        SELECT * FROM "attributes"
+        WHERE "id" = $1;
+    `;
+    const sqlValues = [
+        req.params.id
+    ];
+    pool.query(sqlText, sqlValues)
+    .then((dbRes) => {
+        res.send(dbRes.rows[0]);
+    })
+    .catch((dbErr) => {
+        console.log('SELECT database error', dbErr);
+        res.sendStatus(500);
+    });
+});
+
+//Edit selected attribute.
+router.put('/edit/:id', (req, res) => {
+    const sqlText = `
+        UPDATE "attributes" 
+        SET "attribute_name" = $1,
+            "rarity_value" = $2
+        WHERE "id" = $3;
+    `;
+    const sqlValues = [
+        req.body.attributeName,
+        req.body.attributeRarity,
+        req.params.id
+    ];
+    
+    pool.query(sqlText, sqlValues)
+    .then((dbRes) => {
+        res.sendStatus(200);
+    })
+    .catch((dbErr) => {
+        console.log('UPDATE database error', dbErr);
+        res.sendStatus(500);
+    });
+});
+
 module.exports = router;

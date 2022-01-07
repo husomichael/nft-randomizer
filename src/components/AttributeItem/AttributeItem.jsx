@@ -16,19 +16,12 @@ function AttributeItem({attribute}){
         });
     };
 
-    function editAttribute(){
-        // dispatch({
-        //     type: 'EDIT_ATTRIBUTE',
-        //     payload:
-        // });
-    };
-
     return(
         <div>
             {/* <h3>Total Layer Rarity (Needs to be %100) </h3> TODO: {find a way to total up rarities per layers here
             Limit user to having values = 100% for all attributes per layer.}*/} 
             <li>{attribute.attribute_name}  {attribute.rarity_value}</li>
-            <button onClick={editAttribute}>Edit</button>
+            <button onClick={() => history.push(`/editattribute/${attribute.id}`)}>Edit</button>
             <button onClick={deleteAttribute}>Delete</button>
         </div>
     )

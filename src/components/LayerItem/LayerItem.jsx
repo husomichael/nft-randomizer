@@ -6,7 +6,6 @@ function LayerItem({layer}){
     const dispatch = useDispatch();
     const history = useHistory();
     
-    //Find a way to conditionally render EDITING a layer.
     function deleteLayer(){
         dispatch({
             type: 'DELETE_LAYER',
