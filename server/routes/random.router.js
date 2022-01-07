@@ -29,33 +29,44 @@ router.post('/', (req, res) => {
             roll = randomInt();
             for(let attribute of project.attributes){
                 if(attribute.layer_id == layer.id 
-                    && roll > rarityRange 
-                    && roll <= (rarityRange + attribute.rarity_value)){
+                && roll > rarityRange 
+                && roll <= (rarityRange + attribute.rarity_value)){
                     rowArray.push(attribute.attribute_name);
-                    rarityRange+= attribute.rarity_value
+                    rarityRange+= attribute.rarity_value;
                 }else if(attribute.layer_id == layer.id){
                     rarityRange += attribute.rarity_value;
                 };
             };//end pushing 1 randomized attribute loop.
         };//end for of layers loop
-        // ***** UNIQUE CHECK BEFORE PUSH *****
-        // for(let check of returnArray){
-        //     console.log('check', check);
-        //     console.log('rowArray:', rowArray);
-        //     if(rowArray == check){
-        //         console.log('Duplicate found!');
-        //         console.log('returnArray:', check);
-        //         console.log('rowArray:', rowArray);
-        //     }else{
-        //         returnArray.push(rowArray);
-        //     };
-        // };//end for of returnArray uniqueness check loop.
-        // //Conditional can't run without first being populated.
-        // if (returnArray = []){
-        //     returnArray.push(rowArray);
-        // };
+        //***** UNIQUE CHECK BEFORE PUSH *****
+        console.log('rowArray before pushString:', rowArray);
+        let pushString = '';
+        for(singleAttribute of rowArray){
+            if(singleAttribute != rowArray[0]){
+                pushString += singleAttribute;
+            };
+        };
+        for(let oneRow of returnArray){
+            let tempCheckString = '';
+            for(tempAttribute of oneRow){
+                if(tempAttribute != oneRow[0]){
+                    tempCheckString += tempAttribute;
+                };
+            };
+            console.log('tempCheckString', tempCheckString);
+            console.log('pushString', pushString);
+            if(pushString == tempCheckString){
+                console.log('Duplicate found!');
+            }else{
+                returnArray.push(rowArray);
+            };
+        };//end for of returnArray uniqueness check loop.
+        //Conditional can't run without first being populated.
+        if (returnArray = []){
+            returnArray.push(rowArray);
+        };
         //push
-        returnArray.push(rowArray);
+        //returnArray.push(rowArray);
         //Reset row array for next row.
         rowArray = [];
     };//End mint number for loop
