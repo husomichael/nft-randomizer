@@ -50,7 +50,7 @@ function EditAttribute() {
     dispatch({
       type: 'CLEAR_EDIT_ATTRIBUTE'
     })
-    history.push('/projects'); //What do I do here? Go to last page visited.
+    history.push(`/attributes/${attributeToEdit.attributeProjectId}`); //What do I do here? Go to last page visited.
     //All other components are based on project ID for params.
     //This component's use params are based on attribute ID.
   }

@@ -42,7 +42,7 @@ function EditLayer() {
     dispatch({
       type: 'CLEAR_EDIT_LAYER'
     })
-    history.push('/projects'); //What do I do here? Go to last page visited.
+    history.push(`/layers/${layerToEdit.layerProjectId}`); //What do I do here? Go to last page visited.
     //All other components are based on project ID for params.
     //This component's use params are based on layer ID.
   }

@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
             returnArray.push(rowArray);
         };
         rowArray = [];
-        rowArray.push(i);
+        rowArray.push(i + 1);
         for (let layer of project.layers){
             rarityRange = 0;
             roll = randomInt();
