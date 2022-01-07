@@ -23,9 +23,10 @@ import CheckInputs from '../CheckInputs/CheckInputs.jsx';
 import NextSteps from '../NextSteps/NextSteps.jsx';
 import Results from '../Results/Results.jsx';
 import Projects from '../Projects/Projects.jsx';
+import EditProject from '../EditProject/EditProject';
+import EditLayer from '../EditLayer/EditLayer';
 
 import './App.css';
-import EditProject from '../EditProject/EditProject';
 
 function App() {
   const dispatch = useDispatch();
@@ -119,6 +120,9 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute exact path="/editproject/:id">
             <EditProject />
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/editlayer/:id">
+            <EditLayer />
           </ProtectedRoute>
           <Route
             exact

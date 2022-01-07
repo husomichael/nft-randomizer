@@ -5,13 +5,6 @@ function LayerItem({layer}){
 
     const dispatch = useDispatch();
     const history = useHistory();
-
-    function editLayer(){
-        dispatch({
-            type: 'EDIT_LAYER',
-            payload: layer.id
-        });
-    };
     
     //Find a way to conditionally render EDITING a layer.
     function deleteLayer(){
@@ -24,7 +17,7 @@ function LayerItem({layer}){
     return(
         <div>
             {layer.layer_name}
-            <button onClick={editLayer}>Edit</button>
+            <button onClick={() => history.push(`/editlayer/${layer.id}`)}>Edit</button>
             <button onClick={deleteLayer}>Delete</button>
         </div>
     )

@@ -51,34 +51,34 @@ function* deleteProject(action){
 function* fetchOneProject(action) {
     try{
         const response = yield axios({
-        method: 'GET',
-        url: `/api/projects/edit/${action.payload}`
+            method: 'GET',
+            url: `/api/projects/edit/${action.payload}`
         })
-      const projectToEdit = response.data;
-      yield put({
-        type: 'SET_PROJECT_TO_EDIT',
-        payload: projectToEdit
-      })
+        const projectToEdit = response.data;
+        yield put({
+            type: 'SET_PROJECT_TO_EDIT',
+            payload: projectToEdit
+        })
     } catch (err) {
-      console.log(err);
-    }
-  }
+        console.log(err);
+    };
+};
   
 function* editProject(action) {
-    try {
+    try{
         console.log('editProject action.payload', action.payload)
         yield axios({
-        method: 'PUT',
-        url: `/api/projects/edit/${action.payload.id}`,
-        data: action.payload
-      })
-      yield put({
-        type: 'GET_PROJECTS'
-      })
+            method: 'PUT',
+            url: `/api/projects/edit/${action.payload.id}`,
+            data: action.payload
+        })
+        yield put({
+            type: 'GET_PROJECTS'
+        })
     } catch (err) {
-      console.log(err)
-    }
-  }
+        console.log(err)
+    };
+};
 
 function* projectSaga() {
     yield takeLatest('ADD_PROJECT', addProject);

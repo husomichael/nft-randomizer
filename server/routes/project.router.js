@@ -130,6 +130,7 @@ router.get('/edit/:id', (req, res) => {
     });
 });
 
+//Edit selected project.
 router.put('/edit/:id', (req, res) => {
     const sqlText = `
         UPDATE "projects" 
@@ -137,8 +138,8 @@ router.put('/edit/:id', (req, res) => {
         WHERE "id" = $2;
     `;
     const sqlValues = [
-      req.body.projectName,
-      req.params.id
+        req.body.projectName,
+        req.params.id
     ];
     
     pool.query(sqlText, sqlValues)
@@ -149,7 +150,7 @@ router.put('/edit/:id', (req, res) => {
         console.log('UPDATE database error', dbErr);
         res.sendStatus(500);
     });
-  });
+});
 
 
 module.exports = router;
