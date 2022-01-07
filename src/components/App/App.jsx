@@ -25,6 +25,7 @@ import Results from '../Results/Results.jsx';
 import Projects from '../Projects/Projects.jsx';
 
 import './App.css';
+import EditProject from '../EditProject/EditProject';
 
 function App() {
   const dispatch = useDispatch();
@@ -115,6 +116,9 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute exact path="/nextsteps">
             <NextSteps />
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/editproject/:id">
+            <EditProject />
           </ProtectedRoute>
           <Route
             exact

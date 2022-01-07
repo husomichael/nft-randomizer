@@ -18,18 +18,18 @@ router.post('/', (req, res) => {
         for (let layer of project.layers){
             rarityRange = 0;
             roll = randomInt();
-
             for(let attribute of project.attributes){
-                if(attribute.layer_id == layer.id && roll > rarityRange && roll <= (rarityRange + attribute.rarity_value)){
+                if(attribute.layer_id == layer.id 
+                    && roll > rarityRange 
+                    && roll <= (rarityRange + attribute.rarity_value)){
                     rowArray.push(attribute.attribute_name);
                     rarityRange+= attribute.rarity_value
                 }else if(attribute.layer_id == layer.id){
                     rarityRange += attribute.rarity_value;
                 };
             };//end pushing 1 randomized attribute loop.
-
         };//end for of layers loop
-
+        // ***** UNIQUE CHECK BEFORE PUSH *****
         // for(let check of returnArray){
         //     console.log('check', check);
         //     console.log('rowArray:', rowArray);
@@ -41,19 +41,18 @@ router.post('/', (req, res) => {
         //         returnArray.push(rowArray);
         //     };
         // };//end for of returnArray uniqueness check loop.
-
         // //Conditional can't run without first being populated.
         // if (returnArray = []){
         //     returnArray.push(rowArray);
         // };
+        //push
         returnArray.push(rowArray);
         //Reset row array for next row.
         rowArray = [];
-
     };//End mint number for loop
-
     console.log('returnArray:', returnArray);
+    //Send client randomized values.
     res.send(returnArray);
-}); // End /random POST
+});//End /random POST
 
 module.exports = router;

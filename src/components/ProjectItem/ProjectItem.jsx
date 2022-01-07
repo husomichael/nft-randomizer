@@ -7,13 +7,6 @@ function ProjectItem({project}){
     const history = useHistory();
     const projects = useSelector(store => store.projects);
 
-    function editProject(){
-        dispatch({
-            type: 'EDIT_PROJECT',
-            payload: project.id
-        });
-    };
-
     function selectProject(){
         if(projects == []){
             dispatch({
@@ -29,9 +22,6 @@ function ProjectItem({project}){
         history.push(`/layers/${project.id}`);
     };
 
-
-    //TODO: Delete all references to layers, and attributes for project when deleted.
-    //Find a way to conditionally render EDITING a project.
     function deleteProject(){
         dispatch({
             type: 'DELETE_PROJECT',
@@ -42,7 +32,7 @@ function ProjectItem({project}){
     return(
         <div>
             {project.project_name}
-            <button onClick={editProject}>Edit</button>
+            <button onClick={() => history.push(`/editproject/${project.id}`)}>Edit</button>
             <button onClick={deleteProject}>Delete</button>
             <button onClick={selectProject}>Select</button>
         </div>

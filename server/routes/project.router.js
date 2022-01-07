@@ -111,5 +111,45 @@ router.put('/select/:id', (req, res) => {
     });
 });
 
+//Get one project for editing.
+router.get('/edit/:id', (req, res) => {
+    const sqlText = `
+        SELECT * FROM "projects"
+        WHERE "id" = $1;
+    `;
+    const sqlValues = [
+        req.params.id
+    ];
+    pool.query(sqlText, sqlValues)
+    .then((dbRes) => {
+        res.send(dbRes.rows[0]);
+    })
+    .catch((dbErr) => {
+        console.log('SELECT database error', dbErr);
+        res.sendStatus(500);
+    });
+});
+
+router.put('/edit/:id', (req, res) => {
+    const sqlText = `
+        UPDATE "projects" 
+        SET "project_name" = $1
+        WHERE "id" = $2;
+    `;
+    const sqlValues = [
+      req.body.projectName,
+      req.params.id
+    ];
+    
+    pool.query(sqlText, sqlValues)
+    .then((dbRes) => {
+        res.sendStatus(200);
+    })
+    .catch((dbErr) => {
+        console.log('UPDATE database error', dbErr);
+        res.sendStatus(500);
+    });
+  });
+
 
 module.exports = router;
