@@ -39,8 +39,8 @@ router.post('/', (req, res) => {
             };//end pushing 1 randomized attribute loop.
         };//end for of layers loop
         //***** UNIQUE CHECK BEFORE PUSH *****
-        console.log('rowArray before pushString:', rowArray);
         let pushString = '';
+        let dupe = false;
         for(singleAttribute of rowArray){
             if(singleAttribute != rowArray[0]){
                 pushString += singleAttribute;
@@ -53,17 +53,19 @@ router.post('/', (req, res) => {
                     tempCheckString += tempAttribute;
                 };
             };
-            console.log('tempCheckString', tempCheckString);
-            console.log('pushString', pushString);
             if(pushString == tempCheckString){
-                console.log('Duplicate found!');
-            }else{
-                returnArray.push(rowArray);
+                dupe = true;
+                console.log('found a duplicate at:', i);
+                i--;
+                break;
             };
         };//end for of returnArray uniqueness check loop.
-        //Conditional can't run without first being populated.
-        if (returnArray = []){
+        //if no duplicate, push 
+        if (dupe == false){
             returnArray.push(rowArray);
+        };
+        if(i%100 == 0){
+            console.log(i);
         };
         //push
         //returnArray.push(rowArray);
