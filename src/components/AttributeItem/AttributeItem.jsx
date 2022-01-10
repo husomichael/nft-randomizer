@@ -1,6 +1,7 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
+import {List, ListItem, Button, Grid} from '@mui/material';
 
 function AttributeItem({attribute}){
 
@@ -17,11 +18,11 @@ function AttributeItem({attribute}){
     };
 
     return(
-        <div>
-            <li>{attribute.attribute_name}  {attribute.rarity_value}%</li>
-            <button onClick={() => history.push(`/editattribute/${attribute.id}`)}>Edit</button>
-            <button onClick={deleteAttribute}>Delete</button>
-        </div>
+            <Grid item xs={12}>
+                <b>{attribute.attribute_name}  {attribute.rarity_value}%</b>
+                <Button onClick={() => history.push(`/editattribute/${attribute.id}`)}>Edit</Button>
+                <Button onClick={deleteAttribute}>Delete</Button>
+            </Grid>
     )
 };
 

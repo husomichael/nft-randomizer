@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react';
 import {useHistory, useParams} from 'react-router-dom';
 import AttributeItem from '../AttributeItem/AttributeItem.jsx';
 import AttributeLayerItem from '../AttributeLayerItem/AttributeLayerItem.jsx';
+import {Grid, Paper, Box, Button, List, ListItem} from '@mui/material';
 
 function Attributes(){
 
@@ -47,14 +48,25 @@ function Attributes(){
     console.log(layers);
     console.log(attributes);
     return(
-        <div>
-            <h1>Attributes and Rarities</h1>
-            <p>
-                Add all of your attributes for each layer.
-                Assign the desired rarity per attribute.
-                <h4>ALL Layers must have exactly 100% rarity.</h4>
-            </p>
-            {layers.map(layer =>{
+        <div><Grid
+        container
+        direction="row"
+        justifyContent="space-evenly"
+        alignItems="center"
+      >
+                <Grid item xs={7}>
+                    <Box><h1>Attributes and Rarities</h1></Box>
+                </Grid>
+                <Grid item xs={7}>
+                    <Paper><p>
+                        Add all of your attributes for each layer.
+                        Assign the desired rarity per attribute.
+                    <h4>ALL Layers must have exactly 100% rarity.</h4></p>
+                    </Paper>
+                </Grid>
+                <Grid item xs={6}>
+                    <Box>
+                    {layers.map(layer =>{
                 if(layer.project_id == params.id)
                 return(
                     <div key={layer.id}>
@@ -62,16 +74,24 @@ function Attributes(){
                         {attributes.map(attribute => {
                         if (layer.id == attribute.layer_id)
                             return(
-                                <div key={attribute.id}>
+                                <Grid
+                                    container
+                                    direction="row"
+                                    justifyContent="space-evenly"
+                                    alignItems="center"
+                                    key={attribute.id}>
                                     <AttributeItem attribute={attribute} />
-                                </div>
+                                </Grid>
                             )
                         })}
                     </div>
                 )
             })}
-            <button onClick={goToLayers}>Back To Layers</button>
-            <button onClick={goToCheckInputs}>Check All Inputs</button>
+                    </Box>
+                </Grid>
+            </Grid>
+                    <Button variant="contained" onClick={goToLayers}>Back To Layers</Button>
+                    <Button variant="outlined" onClick={goToCheckInputs}>Check All Inputs</Button>
         </div>
     );
 };

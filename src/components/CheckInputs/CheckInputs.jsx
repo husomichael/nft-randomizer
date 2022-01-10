@@ -88,6 +88,7 @@ function CheckInputs(){
 
     return(
         <div>
+            <h1>Layers</h1>
             {layers.map(layer =>{
                 if(layer.project_id == params.id)
                 return(

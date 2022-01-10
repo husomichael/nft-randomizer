@@ -2,6 +2,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import {TextField, Button, Grid} from '@mui/material';
 
 function AttributeLayerItem({layer, params}){
 
@@ -38,19 +39,28 @@ function AttributeLayerItem({layer, params}){
 
     return(
         <div>
-            <h2>Layer - {layer.layer_name}</h2>
-            <h4>Total Rarity: {layerRarity}%</h4>
-            <input
+            <Grid container direction={"column"} spacing={5}>
+                <Grid item>
+                    <h2>Layer - {layer.layer_name}</h2>
+                    <h4>Total Rarity: {layerRarity}%</h4>
+                </Grid>
+                <Grid item>
+                <TextField
             placeholder="Attribute Name"
             value={inputAttribute} 
             onChange={setAttribute}
             />
-            <input
+            <TextField
             placeholder="Set Rarity %"
             value={inputRarity}
             onChange={setRarity}
             />
-            <button onClick={addAttribute}>Add Attribute</button>
+            </Grid>
+                <Grid item>
+                    <Button variant="contained" onClick={addAttribute}>Add Attribute</Button>
+                </Grid>
+            </Grid>
+            <br />
         </div>
     )
 };
