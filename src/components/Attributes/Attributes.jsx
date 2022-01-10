@@ -48,6 +48,12 @@ function Attributes(){
     console.log(attributes);
     return(
         <div>
+            <h1>Attributes and Rarities</h1>
+            <p>
+                Add all of your attributes for each layer.
+                Assign the desired rarity per attribute.
+                <h4>ALL Layers must have exactly 100% rarity.</h4>
+            </p>
             {layers.map(layer =>{
                 if(layer.project_id == params.id)
                 return(

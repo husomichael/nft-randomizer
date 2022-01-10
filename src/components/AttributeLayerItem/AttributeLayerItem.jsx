@@ -6,9 +6,10 @@ import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 function AttributeLayerItem({layer, params}){
 
     const dispatch = useDispatch();
-    const projects = useSelector(store => store.projects.selectedProjectReducer);
     const [inputAttribute, setInputAttribute] = useState('');
     const [inputRarity, setInputRarity] = useState('');
+    const attributes = useSelector (store => store.attributes);
+    let layerRarity = 0;
 
     function setAttribute(event){
         setInputAttribute(event.target.value);
@@ -17,6 +18,13 @@ function AttributeLayerItem({layer, params}){
     function setRarity(event){
         setInputRarity(event.target.value);
     };
+
+    {attributes.map(attribute => {
+        if(attribute.layer_id == layer.id){
+            layerRarity += attribute.rarity_value;
+        };
+    })}
+
 
 
     function addAttribute(){
@@ -30,7 +38,8 @@ function AttributeLayerItem({layer, params}){
 
     return(
         <div>
-            <h2>{layer.layer_name}</h2>
+            <h2>Layer - {layer.layer_name}</h2>
+            <h4>Total Rarity: {layerRarity}%</h4>
             <input
             placeholder="Attribute Name"
             value={inputAttribute} 

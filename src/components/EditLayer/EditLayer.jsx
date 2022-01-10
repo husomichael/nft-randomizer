@@ -10,8 +10,6 @@ function EditLayer() {
   console.log(params)
 
   useEffect(() => {
-    // dispatch to a saga that will populate our
-    // editThisUser reducer
     dispatch({
       type: 'FETCH_ONE_LAYER',
       payload: params.id

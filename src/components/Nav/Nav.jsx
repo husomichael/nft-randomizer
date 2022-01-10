@@ -28,8 +28,8 @@ function Nav() {
               Home
             </Link>
 
-            <Link className="navLink" to="/layers">
-              Layers
+            <Link className="navLink" to="/projects">
+              Your Projects
             </Link>
 
             <Link className="navLink" to="/info">

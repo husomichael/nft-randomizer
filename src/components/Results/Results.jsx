@@ -46,12 +46,20 @@ function CheckInputs(){
     };
 
     function downloadCsv(){
-
+        if (random == []){
+            return (
+                <button>Generating CSV...</button>
+            )
+        }else{
+            return (
+            <button onClick={() => downloadBlob(csv, 'export.csv', 'text/csv;charset=utf-8;')}>Download CSV</button>
+            )
+        }
     }
 
     return(
         <div>
-            <button onClick={() => downloadBlob(csv, 'export.csv', 'text/csv;charset=utf-8;')}>Download CSV</button>
+            {downloadCsv()}
             <button onClick={goToCheckInputs}>Back To CheckInputs</button>
         </div>
     );
