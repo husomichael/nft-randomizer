@@ -39,13 +39,9 @@ function AttributeLayerItem({layer, params}){
 
     return(
         <div>
-            <Grid container direction={"column"} spacing={5}>
-                <Grid item>
-                    <h2>Layer - {layer.layer_name}</h2>
-                    <h4>Total Rarity: {layerRarity}%</h4>
-                </Grid>
-                <Grid item>
-                <TextField
+            <h2>Layer - {layer.layer_name}</h2>
+            <h4>Total Rarity: {layerRarity}%</h4>
+            <TextField
             placeholder="Attribute Name"
             value={inputAttribute} 
             onChange={setAttribute}
@@ -55,11 +51,7 @@ function AttributeLayerItem({layer, params}){
             value={inputRarity}
             onChange={setRarity}
             />
-            </Grid>
-                <Grid item>
-                    <Button variant="contained" onClick={addAttribute}>Add Attribute</Button>
-                </Grid>
-            </Grid>
+            <Button variant="contained" onClick={addAttribute}>Add Attribute</Button>
             <br />
         </div>
     )

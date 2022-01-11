@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
+import {TextField, Button} from '@mui/material';
 import ProjectItem from '../ProjectItem/ProjectItem.jsx';
 
 
@@ -39,7 +40,9 @@ function Projects(){
 
     return(
         <div>
-            <p>Current Projects</p>
+            <header class="component-header">
+                <h2>Your Projects</h2>
+            </header>
             {projects.map(project =>{
                 return(
                     <div key={project.id}>
@@ -48,12 +51,12 @@ function Projects(){
                 )
             })}
             <p>Add a Project</p>
-            <input
+            <TextField
                 placeholder="Add a Project" 
                 value={inputProject} 
                 onChange={setProjects}
             />
-            <button onClick={addProject}>Add a Project</button>
+            <Button variant='contained' onClick={addProject}>Add a Project</Button>
         </div>
     );
 };

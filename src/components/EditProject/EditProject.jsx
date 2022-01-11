@@ -1,6 +1,7 @@
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import {TextField, Button} from '@mui/material';
 
 
 function EditProject() {
@@ -55,20 +56,23 @@ function EditProject() {
   return (
     <div>
       <h2>Edit Project:</h2>
-      
       <form onSubmit={handleSubmit}>
-        <input
+        <TextField
           placeholder='Project Name'
           value={projectToEdit.projectName || ''}
           onChange={handleProjectNameChange} 
         />
-        <button>Update Project</button>
+        <button 
+        variant='contained' >
+            Update Project
+        </button>
       </form>
 
-      <button
+      <Button
+        variant='contained'
         onClick={handleCancel}>
         Cancel
-      </button>
+      </Button>
     </div>
   );
 }

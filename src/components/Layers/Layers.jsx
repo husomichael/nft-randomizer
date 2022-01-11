@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory, useParams} from 'react-router-dom';
+import {Button, TextField} from '@mui/material';
 import LayerItem from '../LayerItem/LayerItem.jsx';
 
 
@@ -65,12 +66,12 @@ function Layers(){
     return(
         <div>
             <p>Insert all of your projects layers. Note: Make sure the layer names are identical to your photoshop project's layer names.</p>
-            <input 
+            <TextField 
             placeholder="Add Layer" 
             value={inputLayer} 
             onChange={setLayers}
             />
-            <button onClick={addLayer}>Add Layer</button>
+            <Button variant='contained' onClick={addLayer}>Add Layer</Button>
             {layers.map(layer =>{
                 if(layer.project_id == params.id)
                 return(
@@ -79,8 +80,8 @@ function Layers(){
                     </div>
                 )
             })}
-            <button onClick={goToProjects}>Back To Projects</button>
-            <button onClick={goToAttributes}>Next To Attributes</button>
+            <Button variant='contained' onClick={goToProjects}>Back To Projects</Button>
+            <Button variant='contained' onClick={goToAttributes}>Next To Attributes</Button>
         </div>
     );
 };

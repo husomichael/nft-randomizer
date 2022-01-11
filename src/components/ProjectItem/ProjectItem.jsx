@@ -1,5 +1,10 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
+import {Button} from '@mui/material';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal)
 
 function ProjectItem({project}){
 
@@ -23,18 +28,47 @@ function ProjectItem({project}){
     };
 
     function deleteProject(){
-        dispatch({
-            type: 'DELETE_PROJECT',
-            payload: project.id
-        });
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+              confirmButton: 'btn btn-success',
+              cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+          })
+          
+          swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+          }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch({
+                    type: 'DELETE_PROJECT',
+                    payload: project.id
+                });
+                swalWithBootstrapButtons.fire(
+                    'Deleted!',
+              )
+            } else if (
+              result.dismiss === Swal.DismissReason.cancel
+            ) {
+              swalWithBootstrapButtons.fire(
+                'Cancelled',
+              )
+            }
+          })
     };
 
     return(
         <div>
             {project.project_name}
-            <button onClick={() => history.push(`/editproject/${project.id}`)}>Edit</button>
-            <button onClick={deleteProject}>Delete</button>
-            <button onClick={selectProject}>Select</button>
+            <Button variant="contained" onClick={() => history.push(`/editproject/${project.id}`)}>Edit</Button>
+            <Button onClick={deleteProject}>Delete</Button>
+            <Button onClick={selectProject}>Select</Button>
         </div>
     )
 };

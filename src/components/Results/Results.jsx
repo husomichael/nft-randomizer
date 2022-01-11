@@ -1,6 +1,7 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {useState, useEffect} from 'react';
 import {useHistory, useParams} from 'react-router-dom';
+import {Paper, Button, Table, TableContainer, TableHead, TableBody, TableRow, TableCell} from '@mui/material';
 
 function CheckInputs(){
 
@@ -13,6 +14,10 @@ function CheckInputs(){
 
     //Randomized data from server. Format: Array of Arrays of Strings.
     const random = useSelector(store => store.random);
+    const rows = random.map(rows => {
+        return rows;
+    });
+    console.log('rows are:', rows);
 
     //Convert array of arrays of strings to CSV format.
     function arrayToCsv(data){
@@ -52,15 +57,30 @@ function CheckInputs(){
             )
         }else{
             return (
-            <button onClick={() => downloadBlob(csv, 'export.csv', 'text/csv;charset=utf-8;')}>Download CSV</button>
+            <Button variant='contained' onClick={() => downloadBlob(csv, 'export.csv', 'text/csv;charset=utf-8;')}>Download CSV</Button>
             )
         }
     }
 
     return(
         <div>
+            <Table style={{ maxHeight: 700}}>
+                {rows.map(row =>{
+                    return(
+                        <TableRow>
+                            {row.map(cell =>{
+                                return(
+                                    <TableCell>
+                                        {cell}
+                                    </TableCell>
+                                )
+                            })}
+                        </TableRow>
+                    )
+                })}
+            </Table>
             {downloadCsv()}
-            <button onClick={goToCheckInputs}>Back To CheckInputs</button>
+            <Button variant='contained' onClick={goToCheckInputs}>Back To CheckInputs</Button>
         </div>
     );
 };

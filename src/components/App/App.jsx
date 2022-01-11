@@ -63,7 +63,7 @@ function App() {
             exact
             path="/user"
           >
-            <UserPage />
+            <Projects />
           </ProtectedRoute>
 
           <ProtectedRoute

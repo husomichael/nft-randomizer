@@ -1,3 +1,9 @@
+/*
+#222831 Dark Gray
+#393E46 Gray
+#00ADB5 Teal
+#EEEEEE White
+*/
 .nav {
   /* flex box layout */
   display: flex;
@@ -5,7 +11,7 @@
   align-items: center;
 
   margin: 0 0 30px;
-  background-color: #00acb0;
+  background-color: #222831;
   overflow: hidden;
 }
 
@@ -16,15 +22,15 @@
 .nav-title {
   font-size: 24px;
   font-weight: 700;
-  color: #f2f2f2;
+  color: #00ADB5;
   padding-left: 10px;
   margin: 0;
 }
 
 .navLink {
   display: inline-block;
-  color: #f2f2f2;
-  background-color: #00acb0;
+  color: #00ADB5;
+  background-color: #222831;
   text-align: center;
   padding: 24px 10px;
   text-decoration: none;
@@ -38,5 +44,5 @@
 }
 
 .navLink:hover {
-  background-color: #008183;
+  background-color: #393E46;
 }

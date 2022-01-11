@@ -48,50 +48,34 @@ function Attributes(){
     console.log(layers);
     console.log(attributes);
     return(
-        <div><Grid
-        container
-        direction="row"
-        justifyContent="space-evenly"
-        alignItems="center"
-      >
-                <Grid item xs={7}>
-                    <Box><h1>Attributes and Rarities</h1></Box>
-                </Grid>
-                <Grid item xs={7}>
-                    <Paper><p>
-                        Add all of your attributes for each layer.
-                        Assign the desired rarity per attribute.
-                    <h4>ALL Layers must have exactly 100% rarity.</h4></p>
-                    </Paper>
-                </Grid>
-                <Grid item xs={6}>
-                    <Box>
-                    {layers.map(layer =>{
+            <div>
+            <h1>Attributes and Rarities</h1>
+            <p>
+                    Add all of your attributes for each layer.
+                    Assign the desired rarity per attribute.
+                <h4>ALL Layers must have exactly 100% rarity.</h4></p>
+                <Grid container direction="row" spacing={4}>
+                {layers.map(layer =>{
                 if(layer.project_id == params.id)
                 return(
+                    <Grid item>
                     <div key={layer.id}>
-                        <AttributeLayerItem layer={layer} params={params.id} />
-                        {attributes.map(attribute => {
-                        if (layer.id == attribute.layer_id)
-                            return(
-                                <Grid
-                                    container
-                                    direction="row"
-                                    justifyContent="space-evenly"
-                                    alignItems="center"
-                                    key={attribute.id}>
-                                    <AttributeItem attribute={attribute} />
-                                </Grid>
-                            )
-                        })}
+                            <AttributeLayerItem layer={layer} params={params.id} />
+                            {attributes.map(attribute => {
+                            if (layer.id == attribute.layer_id)
+                                return(
+                                        <div key={attribute.id}>
+                                            <AttributeItem attribute={attribute} />
+                                        </div>
+                                )
+                            })}
                     </div>
-                )
-            })}
-                    </Box>
+                    </Grid>
+                    )
+                })}
                 </Grid>
-            </Grid>
-                    <Button variant="contained" onClick={goToLayers}>Back To Layers</Button>
-                    <Button variant="outlined" onClick={goToCheckInputs}>Check All Inputs</Button>
+                <Button variant="contained" onClick={goToLayers}>Back To Layers</Button>
+                <Button variant="contained" onClick={goToCheckInputs}>Check All Inputs</Button>
         </div>
     );
 };

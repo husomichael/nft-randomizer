@@ -1,6 +1,8 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {useState, useEffect} from 'react';
 import {useHistory, useParams} from 'react-router-dom';
+import {Grid, Button, TextField} from '@mui/material';
+import './CheckInputs.css';
 
 function CheckInputs(){
 
@@ -12,9 +14,6 @@ function CheckInputs(){
     const attributes = useSelector(store => store.attributes);
     const [mintNumber, setMintNumber] = useState('');
     let rarities = [];
-    console.log('attributes:', attributes);
-    console.log('projects:', projects);
-    console.log('layers:', layers);
 
     useEffect(() =>{
         fetchLayers();
@@ -123,13 +122,13 @@ function CheckInputs(){
                     </div>
                 )
             })}
-            <input
+            <TextField
             placeholder="Number to Mint"
             value={mintNumber}
             onChange={handleMintNumber}
             />
-            <button onClick={goToAttributes}>Back To Attributes</button>
-            <button onClick={sendInputs}>Generate</button>
+            <Button variant='contained' onClick={goToAttributes}>Back To Attributes</Button>
+            <Button variant='contained' onClick={sendInputs}>Generate</Button>
         </div>
     );
 };
