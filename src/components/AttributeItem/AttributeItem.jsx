@@ -68,10 +68,10 @@ function AttributeItem({attribute}){
                 align-items={'center'}
                 >
                     <Grid item>
-                        <Button onClick={() => history.push(`/editattribute/${attribute.id}`)}>Edit</Button>
+                        <Button variant='outlined' onClick={() => history.push(`/editattribute/${attribute.id}`)}>Edit</Button>
                     </Grid>
                     <Grid item>
-                        <Button onClick={deleteAttribute}>Delete</Button>
+                        <Button variant='outlined' onClick={deleteAttribute}>Delete</Button>
                     </Grid>
                 </Grid>
             </Grid>

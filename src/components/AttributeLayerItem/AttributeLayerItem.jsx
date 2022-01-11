@@ -26,6 +26,13 @@ function AttributeLayerItem({layer, params}){
         };
     })}
 
+    function rarityCheck(){
+        if(layerRarity == 100){
+            return (<h3 class="green">Total Rarity: {layerRarity}%</h3>)
+        }else{
+            return (<h3 class="red">Total Rarity: {layerRarity}%</h3>)
+        }
+    }
 
 
     function addAttribute(){
@@ -39,20 +46,32 @@ function AttributeLayerItem({layer, params}){
 
     return(
         <div>
-            <h2>Layer - {layer.layer_name}</h2>
-            <h4>Total Rarity: {layerRarity}%</h4>
-            <TextField
-            placeholder="Attribute Name"
-            value={inputAttribute} 
-            onChange={setAttribute}
-            />
-            <TextField
-            placeholder="Set Rarity %"
-            value={inputRarity}
-            onChange={setRarity}
-            />
-            <Button variant="contained" onClick={addAttribute}>Add Attribute</Button>
-            <br />
+            <Grid
+            container direction="row"
+            spacing={5}
+            justifyContent={'space-between'}
+            align-items={'center'}
+            >   
+                <Grid item>
+                    <h2>Layer - {layer.layer_name}</h2>
+                    {rarityCheck()}
+                </Grid>
+                <Grid item>
+                <TextField
+                placeholder="Attribute Name"
+                value={inputAttribute} 
+                onChange={setAttribute}
+                />
+                <TextField
+                placeholder="Set Rarity %"
+                value={inputRarity}
+                onChange={setRarity}
+                />
+                </Grid>
+                <Grid item>
+                <Button variant="contained" onClick={addAttribute}>Add Attribute</Button>
+                </Grid>
+            </Grid>
         </div>
     )
 };

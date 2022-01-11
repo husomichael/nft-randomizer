@@ -1,7 +1,7 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {useState, useEffect} from 'react';
 import {useHistory, useParams} from 'react-router-dom';
-import {Paper, Button, Table, TableContainer, TableHead, TableBody, TableRow, TableCell} from '@mui/material';
+import {Paper, Box, Button, Table, TableContainer, TableHead, TableBody, TableRow, TableCell} from '@mui/material';
 
 function CheckInputs(){
 
@@ -57,30 +57,49 @@ function CheckInputs(){
             )
         }else{
             return (
-            <Button variant='contained' onClick={() => downloadBlob(csv, 'export.csv', 'text/csv;charset=utf-8;')}>Download CSV</Button>
+            <Button variant='contained' justify-content="center" onClick={() => downloadBlob(csv, 'export.csv', 'text/csv;charset=utf-8;')}>Download CSV</Button>
             )
         }
     }
 
     return(
         <div>
-            <Table style={{ maxHeight: 700}}>
-                {rows.map(row =>{
-                    return(
-                        <TableRow>
-                            {row.map(cell =>{
-                                return(
-                                    <TableCell>
-                                        {cell}
-                                    </TableCell>
-                                )
-                            })}
-                        </TableRow>
-                    )
-                })}
-            </Table>
-            {downloadCsv()}
-            <Button variant='contained' onClick={goToCheckInputs}>Back To CheckInputs</Button>
+            <TableContainer style={{ maxHeight: 750}}>
+                <Table stickyHeader>
+                    {rows.map(row =>{
+                        if(row == rows[0]){
+                            return(
+                                <TableHead>
+                                    <TableRow>
+                                    {row.map(cell =>{
+                                        return(
+                                            <TableCell>
+                                                <b>{cell}</b>
+                                            </TableCell>
+                                        )
+                                    })}
+                                    </TableRow>
+                                </TableHead>
+                            )
+                        }else{
+                            return(
+                                <TableRow>
+                                    {row.map(cell =>{
+                                        return(
+                                            <TableCell>
+                                                {cell}
+                                            </TableCell>
+                                        )
+                                    })}
+                                </TableRow>
+                            )
+                        }
+                    })}
+                </Table>
+            </TableContainer>
+            <Box textAlign='center'>
+                {downloadCsv()}
+            </Box>
         </div>
     );
 };

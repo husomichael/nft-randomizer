@@ -126,6 +126,7 @@ function CheckInputs(){
             placeholder="Number to Mint"
             value={mintNumber}
             onChange={handleMintNumber}
+            type="number"
             />
             <Button variant='contained' onClick={goToAttributes}>Back To Attributes</Button>
             <Button variant='contained' onClick={sendInputs}>Generate</Button>
