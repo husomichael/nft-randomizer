@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory, useParams} from 'react-router-dom';
-import {Button, TextField} from '@mui/material';
+import {TextField, Button, Table, TableContainer, TableRow, TableCell, TableHead, Grid, Box} from '@mui/material';
 import LayerItem from '../LayerItem/LayerItem.jsx';
 
 
@@ -65,23 +65,92 @@ function Layers(){
     console.log('selectedproject:', selectedProject);
     return(
         <div>
-            <p>Insert all of your projects layers. Note: Make sure the layer names are identical to your photoshop project's layer names.</p>
+            <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            minHeight="0vh"
+            >
+            <h4>Insert all of your projects layers.</h4>
+            </Box>
+            <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            minHeight="0vh"
+            paddingTop="0"
+            marginTop="0"
+            >
+            <h6><i>Note: Make sure the layer names are identical to your photoshop project's layer names.</i></h6>
+            </Box>
+            <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            minHeight="35vh"
+            >
+            <TableContainer style={{maxWidth: 800}} 
+            textalign="center">
+                <Table>
+                <TableHead>
+                        <TableRow>
+                            <TableCell 
+                            align="center"
+                            sx={{fontSize: 35}}
+                            >
+                                Your Layers
+                            </TableCell>
+                        </TableRow>
+                    </TableHead>
+                                {layers.map(layer =>{
+                                    if(layer.project_id == params.id)
+                                    return(
+                                        <TableRow key={layer.id}>
+                                            <LayerItem layer={layer} />
+                                        </TableRow>
+                                    )
+                                })}
+                </Table>
+            </TableContainer>
+            </Box>
+            <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            minHeight="10vh"
+            >
             <TextField 
-            placeholder="Add Layer" 
+            placeholder="Add a Layer" 
             value={inputLayer} 
             onChange={setLayers}
+            sx={{width: 250, mr: 5, color: '#00ADB5', borderColor: '#00ADB5'}}
             />
-            <Button variant='contained' onClick={addLayer}>Add Layer</Button>
-            {layers.map(layer =>{
-                if(layer.project_id == params.id)
-                return(
-                    <div key={layer.id}>
-                        <LayerItem layer={layer} />
-                    </div>
-                )
-            })}
-            <Button variant='contained' onClick={goToProjects}>Back To Projects</Button>
-            <Button variant='contained' onClick={goToAttributes}>Next To Attributes</Button>
+            <Button variant='outlined' 
+            onClick={addLayer}
+            sx={{color: '#00ADB5', borderColor: '#00ADB5', height: 55}}
+            >
+                Add Layer
+            </Button>
+            </Box>
+            <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            minHeight="10vh"
+            >
+            <Button variant='outlined' 
+            onClick={goToProjects}
+            sx={{mr: 20, color: '#00ADB5', borderColor: '#00ADB5', height: 55}}
+            >
+                Back To Projects
+            </Button>
+            <Button variant='outlined' 
+            onClick={goToAttributes}
+            sx={{ml: 20, color: '#00ADB5', borderColor: '#00ADB5', height: 55}}
+            >
+                Next To Attributes
+            </Button>
+            </Box>
         </div>
     );
 };

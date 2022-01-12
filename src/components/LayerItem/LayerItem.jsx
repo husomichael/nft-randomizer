@@ -1,6 +1,6 @@
 import {useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom';
-import {Button} from '@mui/material';
+import {Button, TableCell} from '@mui/material';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content'
 
@@ -49,9 +49,28 @@ function LayerItem({layer}){
 
     return(
         <div>
-            <h2>{layer.layer_name}</h2>
-            <Button variant='contained' onClick={() => history.push(`/editlayer/${layer.id}`)}>Edit</Button>
-            <Button variant='contained' onClick={deleteLayer}>Delete</Button>
+            <TableCell align="center" 
+            style={{width: 500}}
+            sx={{fontSize: 25}}
+            >
+            {layer.layer_name}
+            </TableCell>
+            <TableCell align="right" style={{width: 100}}>
+            <Button 
+            variant='outlined' 
+            sx={{color: '#FFC300', borderColor: '#FFC300'}} 
+            onClick={() => history.push(`/editlayer/${layer.id}`)}>
+              Edit
+            </Button>
+            </TableCell>
+            <TableCell align="right" style={{width: 100}}>
+            <Button 
+            variant='outlined'
+            sx={{color: '#C21E56', borderColor: '#C21E56'}}
+            onClick={deleteLayer}>
+               Delete
+            </Button>
+            </TableCell>
         </div>
     )
 };

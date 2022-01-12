@@ -37,11 +37,25 @@ Button
 .btn {
   display: inline-block;
   padding: 10px 20px;
-  border-color: #222831;
+  border-color: #00ADB5;
   border-width: 1px 1px 3px;
   border-radius: 4px;
-  background-color: #00ADB5;
-  color: #EEEEEE;
+  background-color: #EEEEEE;
+  color: #00ADB5;
+  font-size: 1.1rem;
+  outline: 0;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.cancel_btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-color: #FFC300;
+  border-width: 1px 1px 3px;
+  border-radius: 4px;
+  background-color: #EEEEEE;
+  color: #FFC300;
   font-size: 1.1rem;
   outline: 0;
   cursor: pointer;

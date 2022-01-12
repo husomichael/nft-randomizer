@@ -45,14 +45,15 @@ function Projects(){
     };
 
     return(
-        <div class="background">
-                    <Box
+        <div>
+            <Box
             display="flex"
             justifyContent="center"
             alignItems="center"
             minHeight="35vh"
             >
-            <TableContainer style={{maxWidth: 800}} textalign="center">
+            <TableContainer style={{maxWidth: 800}} 
+            textalign="center">
                 <Table>
                     <TableHead>
                         <TableRow>
