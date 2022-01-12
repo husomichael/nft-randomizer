@@ -65,7 +65,9 @@ function ProjectItem({project}){
 
     return(
         <div>
-            <TableCell align="center" style={{width: 500}}>
+            <TableCell align="center" 
+            style={{width: 500}}
+            sx={{fontSize: 18}}>
             {project.project_name}
             </TableCell>
             <TableCell align="right" style={{width: 80}}>
@@ -80,9 +82,10 @@ function ProjectItem({project}){
             </TableCell>
             <TableCell align="right" style={{width: 80}}>
             <Button 
-            variant="outlined"
-            sx={{color: '#00ADB5', borderColor: '#00ADB5'}}
-            onClick={selectProject}>Select</Button>
+              variant="outlined"
+              sx={{color: '#00ADB5', borderColor: '#00ADB5'}}
+              onClick={selectProject}>Select
+            </Button>
             </TableCell>
         </div>
     )

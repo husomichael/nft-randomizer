@@ -1,7 +1,7 @@
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import {TextField, Button} from '@mui/material';
+import {TextField, Button, Table, TableContainer, TableRow, TableCell, TableHead, Grid, Box} from '@mui/material';
 
 
 function EditLayer() {
@@ -53,21 +53,43 @@ function EditLayer() {
 
   return (
     <div>
-      <h2>Edit Layer:</h2>
-      
-      <form onSubmit={handleSubmit}>
-        <input
+      <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      minHeight="15vh"
+      >
+      <h2>Edit Layer</h2>
+      </Box>
+      <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      minHeight="0vh"
+      >
+        <form onSubmit={handleSubmit}>
+        <TextField
           placeholder='Layer Name'
           value={layerToEdit.layerName || ''}
           onChange={handleLayerNameChange} 
+          sx={{mr: 3, width: 250}}
         />
-        <button>Update Layer</button>
+        <button className="btn">
+          Update Layer
+        </button>
       </form>
-
-      <button
+      </Box>
+      <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      minHeight="20vh"
+      >
+      <button className="cancel_btn"
         onClick={handleCancel}>
         Cancel
       </button>
+      </Box>
     </div>
   );
 }

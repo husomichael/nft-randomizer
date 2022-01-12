@@ -51,7 +51,7 @@ function LayerItem({layer}){
         <div>
             <TableCell align="center" 
             style={{width: 500}}
-            sx={{fontSize: 25}}
+            sx={{fontSize: 18}}
             >
             {layer.layer_name}
             </TableCell>

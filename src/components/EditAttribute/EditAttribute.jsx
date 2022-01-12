@@ -1,6 +1,7 @@
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import {TextField, Button, Table, TableContainer, TableRow, TableCell, TableHead, Grid, Box} from '@mui/material';
 
 
 function EditAttribute() {
@@ -64,26 +65,49 @@ function EditAttribute() {
 
   return (
     <div>
-      <h2>Edit Attribute:</h2>
-      
-      <form onSubmit={handleSubmit}>
-        <input
+      <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      minHeight="15vh"
+      >
+      <h2>Edit Attribute</h2>
+      </Box>
+      <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      minHeight="0vh"
+      >
+        <form onSubmit={handleSubmit}>
+        <TextField
           placeholder='Attribute Name'
           value={attributeToEdit.attributeName || ''}
           onChange={handleAttributeNameChange} 
+          sx={{mr: 3, width: 250}}
         />
-        <input
+        <TextField
           placeholder='Attribute Rarity'
           value={attributeToEdit.attributeRarity || ''}
           onChange={handleAttributeRarityChange} 
+          sx={{mr: 3, width: 250}}
         />
-        <button>Update Attribute</button>
+        <button className="btn" >
+            Update Attribute
+        </button>
       </form>
-
-      <button
+      </Box>
+      <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      minHeight="20vh"
+      >
+      <button className="cancel_btn"
         onClick={handleCancel}>
         Cancel
       </button>
+      </Box>
     </div>
   );
 }
