@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
-import {Button} from '@mui/material';
+import {Button, TableCell} from '@mui/material';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content'
 
@@ -65,10 +65,25 @@ function ProjectItem({project}){
 
     return(
         <div>
+            <TableCell align="center" style={{width: 500}}>
             {project.project_name}
-            <Button variant="contained" onClick={() => history.push(`/editproject/${project.id}`)}>Edit</Button>
-            <Button onClick={deleteProject}>Delete</Button>
-            <Button onClick={selectProject}>Select</Button>
+            </TableCell>
+            <TableCell align="right" style={{width: 80}}>
+            <Button variant="outlined"
+            sx={{color: '#FFC300', borderColor: '#FFC300'}} 
+            onClick={() => history.push(`/editproject/${project.id}`)}>Edit</Button>
+            </TableCell>
+            <TableCell align="right" style={{width: 80}}>
+            <Button variant="outlined" 
+            sx={{color: '#C21E56', borderColor: '#C21E56'}}
+            onClick={deleteProject}>Delete</Button>
+            </TableCell>
+            <TableCell align="right" style={{width: 80}}>
+            <Button 
+            variant="outlined"
+            sx={{color: '#00ADB5', borderColor: '#00ADB5'}}
+            onClick={selectProject}>Select</Button>
+            </TableCell>
         </div>
     )
 };

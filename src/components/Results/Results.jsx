@@ -64,7 +64,9 @@ function CheckInputs(){
 
     return(
         <div>
-            <TableContainer style={{ maxHeight: 750}}>
+            <TableContainer 
+            style={{ maxHeight: 750,}}
+            justify="center">
                 <Table stickyHeader>
                     {rows.map(row =>{
                         if(row == rows[0]){
