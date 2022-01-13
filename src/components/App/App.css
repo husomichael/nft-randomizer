@@ -51,11 +51,11 @@ Button
 .cancel_btn {
   display: inline-block;
   padding: 10px 20px;
-  border-color: #FFC300;
+  border-color: #ba8f00;
   border-width: 1px 1px 3px;
   border-radius: 4px;
   background-color: #EEEEEE;
-  color: #FFC300;
+  color: #ba8f00;
   font-size: 1.1rem;
   outline: 0;
   cursor: pointer;
@@ -76,10 +76,10 @@ Button
   width: 100%;
 }
 
-.btn:hover {
+/* .btn:hover {
   background-color: #008183;
   text-decoration: none;
-}
+} */
 
 /* This line makes the "Register" and "Login" buttons look like links */
 .btn_asLink {
@@ -94,8 +94,8 @@ Button
 
 .btn_asLink:hover {
   background-color: transparent;
-  border-color: #008183;
-  color: #008183;
+  border-color: #00ADB5;
+  color: #00ADB5;
 }
 
 /* --------------------------------------------------------------------------------

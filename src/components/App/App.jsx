@@ -40,7 +40,10 @@ function App() {
 
   return (
     <Router>
-      <div>
+      <div
+      style={{
+        backgroundColor: '#EEEEEE'
+      }}>
         <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}

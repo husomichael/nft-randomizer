@@ -1,7 +1,7 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {useState, useEffect} from 'react';
 import {useHistory, useParams} from 'react-router-dom';
-import {Grid, Button, TextField} from '@mui/material';
+import {Grid, Typography, TablePagination, Paper, Box, Button, List, ListItem, TextField, TableContainer, Table, TableRow, TableCell, TableHead, TableBody} from '@mui/material';
 import './CheckInputs.css';
 
 function CheckInputs(){
@@ -70,10 +70,6 @@ function CheckInputs(){
             type: 'SEND_INPUTS',
             payload: {layers: inputLayers, attributes: inputAttributes, number: mintNumber}
         })
-        console.log('in sendInputs');
-        console.log('inputLayers:', inputLayers);
-        console.log('inputAttributes:', inputAttributes);
-        console.log('mintNumber', mintNumber);
         history.push(`/results/${params.id}`);
     };
 
@@ -87,49 +83,120 @@ function CheckInputs(){
 
     return(
         <div>
-            <h1>Layers</h1>
-            {layers.map(layer =>{
-                if(layer.project_id == params.id)
-                return(
-                    <div key={layer.id}>
-                        <h2>{layer.layer_name}</h2>
-                        {attributes.map(attribute =>{
-                            if(attribute.layer_id == layer.id)
-                            return(
-                                <div key={attribute.id}>
-                                    {attribute.attribute_name} - {attribute.rarity_value}%
-                                </div>
-                            )
-                        })}
-                    </div>
-                )
-            })}
-            <h1>Rarities</h1>
-            {layers.map(layer =>{
-                if(layer.project_id == params.id)
-                return(
-                    <div key={layer.id}>
-                        <h2>{layer.layer_name}</h2>
+            <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            minHeight="11vh"
+            >
+            <Typography variant="h2" component="div" >
+                Layers
+            </Typography>
+            </Box>
+                <Table>
+                    <Grid 
+                    container direction="row" 
+                    spacing={30} 
+                    justifyContent={'center'}
+                    align-items={'center'}
+                    >
+                    {layers.map(layer =>{
+                        if(layer.project_id == params.id)
+                        return(
+                            <Grid item
+                            xs={1}
+                            key={layer.id}>
+                                <TableHead>
+                                    <TableRow key={layer.id}>
+                                        <TableCell>
+                                            {layer.layer_name}
+                                        </TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                {attributes.map(attribute =>{
+                                    if(attribute.layer_id == layer.id)
+                                    return(
+                                        <TableRow key={attribute.id}>
+                                            <TableCell>
+                                                {attribute.attribute_name}
+                                            </TableCell>
+                                            <TableCell>
+                                                {attribute.rarity_value}%
+                                            </TableCell>
+                                        </TableRow>
+                                    )
+                                })}
+                                </TableBody>
+                            </Grid>
+                        )
+                    })}
+                    </Grid>
+                </Table>
+            <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            minHeight="10vh"
+            >
+            <Typography variant="h2" component="div" >
+                Rarities
+             </Typography>
+            </Box>
+            <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            minHeight="0vh"
+            sx={{ml: 36}}
+            >
+            <TableContainer style={{maxWidth: 1200}} 
+            textalign="center">
+                <Table>
+                    {layers.map(layer =>{
+                    if(layer.project_id == params.id)
+                    return(
+                    <TableRow key={layer.id}>
+                        <TableCell>{layer.layer_name}</TableCell>
                         {rarities.map(rarity => {
                             if(rarity.layerId == layer.id){
                                 if(rarity.layerRarity == 100){
-                                    return (<div class="green">{rarity.layerRarity}%</div>)
+                                    return (<TableCell class="green">{rarity.layerRarity}%</TableCell>)
                                 }else{
-                                    return (<div class="red">{rarity.layerRarity}%</div>)
+                                    return (<TableCell class="red">{rarity.layerRarity}%</TableCell>)
                                 }
                             }
                         })}
-                    </div>
+                    </TableRow>
                 )
             })}
-            <TextField
-            placeholder="Number to Mint"
-            value={mintNumber}
-            onChange={handleMintNumber}
-            type="number"
-            />
-            <Button variant='contained' onClick={goToAttributes}>Back To Attributes</Button>
-            <Button variant='contained' onClick={sendInputs}>Generate</Button>
+            </Table>
+            </TableContainer>
+            </Box>
+            <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            minHeight="11vh"
+            >
+                <Button variant='outlined' 
+                onClick={goToAttributes}
+                sx={{height: 55, color: '#00ADB5', borderColor: '#00ADB5', mr: 35,}}>
+                    Back To Attributes
+                </Button>
+                <TextField
+                placeholder="Number to Mint"
+                value={mintNumber}
+                onChange={handleMintNumber}
+                type="number"
+                sx={{width: 250, mr: 2}}
+                />
+                <Button variant='outlined' 
+                onClick={sendInputs}
+                sx={{mr: 9, height: 55, color: '#5DBB63', borderColor: '#5DBB63'}}>
+                    Generate
+                </Button>
+            </Box>
         </div>
     );
 };

@@ -51,14 +51,14 @@ function LayerItem({layer}){
         <div>
             <TableCell align="center" 
             style={{width: 500}}
-            sx={{fontSize: 18}}
+            sx={{fontSize: 18, pr: 40}}
             >
             {layer.layer_name}
             </TableCell>
             <TableCell align="right" style={{width: 100}}>
             <Button 
             variant='outlined' 
-            sx={{color: '#FFC300', borderColor: '#FFC300'}} 
+            sx={{color: '#ba8f00', borderColor: '#ba8f00'}} 
             onClick={() => history.push(`/editlayer/${layer.id}`)}>
               Edit
             </Button>

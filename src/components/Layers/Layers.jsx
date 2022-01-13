@@ -1,15 +1,11 @@
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory, useParams} from 'react-router-dom';
-import {TextField, Button, Table, TableContainer, TableRow, TableCell, TableHead, Grid, Box} from '@mui/material';
+import {TextField, Typography, Button, Table, TableContainer, TableRow, TableCell, TableHead, Grid, Box} from '@mui/material';
 import LayerItem from '../LayerItem/LayerItem.jsx';
 
 
 function Layers(){
-
-    //TODO:
-    //Rewrite routes to fill reducer, and base maps on reducer values rather than sql statements.
-    //Setup attributeItem routes to do the same.
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -71,7 +67,9 @@ function Layers(){
             alignItems="center"
             minHeight="0vh"
             >
-            <h4>Insert all of your projects layers.</h4>
+            <Typography variant="h2" component="div" >
+            Insert all of your projects layers.
+            </Typography>
             </Box>
             <Box
             display="flex"
@@ -81,13 +79,15 @@ function Layers(){
             paddingTop="0"
             marginTop="0"
             >
-            <h6><i>Note: Make sure the layer names are identical to your photoshop project's layer names.</i></h6>
+            <Typography variant="subtitle1" component="div" >
+                <i>Note: Make sure the layer names are identical to your photoshop project's layer names.</i>
+            </Typography>
             </Box>
             <Box
             display="flex"
             justifyContent="center"
             alignItems="center"
-            minHeight="35vh"
+            minHeight="40vh"
             >
             <TableContainer style={{maxWidth: 800}} 
             textalign="center">
@@ -136,7 +136,7 @@ function Layers(){
             display="flex"
             justifyContent="center"
             alignItems="center"
-            minHeight="10vh"
+            minHeight="0vh"
             >
             <Button variant='outlined' 
             onClick={goToProjects}
@@ -146,7 +146,7 @@ function Layers(){
             </Button>
             <Button variant='outlined' 
             onClick={goToAttributes}
-            sx={{ml: 20, color: '#00ADB5', borderColor: '#00ADB5', height: 55}}
+            sx={{ml: 20, color: '#5DBB63', borderColor: '#5DBB63', height: 55}}
             >
                 Next To Attributes
             </Button>

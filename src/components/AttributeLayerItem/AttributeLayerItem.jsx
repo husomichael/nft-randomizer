@@ -2,23 +2,15 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
-import {TextField, Button, Grid} from '@mui/material';
+import {TextField, Button, Table, TableContainer, TableRow, TableCell, TableHead, Grid, Box} from '@mui/material';
 
 function AttributeLayerItem({layer, params}){
 
     const dispatch = useDispatch();
+    const attributes = useSelector (store => store.attributes);
     const [inputAttribute, setInputAttribute] = useState('');
     const [inputRarity, setInputRarity] = useState('');
-    const attributes = useSelector (store => store.attributes);
     let layerRarity = 0;
-
-    function setAttribute(event){
-        setInputAttribute(event.target.value);
-    };
-
-    function setRarity(event){
-        setInputRarity(event.target.value);
-    };
 
     {attributes.map(attribute => {
         if(attribute.layer_id == layer.id){
@@ -28,12 +20,20 @@ function AttributeLayerItem({layer, params}){
 
     function rarityCheck(){
         if(layerRarity == 100){
-            return (<h3 class="green">Total Rarity: {layerRarity}%</h3>)
+            return (<h1 class="green">Total Rarity: {layerRarity}%</h1>)
         }else{
-            return (<h3 class="red">Total Rarity: {layerRarity}%</h3>)
+            return (<h1 class="red">Total Rarity: {layerRarity}%</h1>)
         }
     }
 
+
+    function setAttribute(event){
+        setInputAttribute(event.target.value);
+    };
+
+    function setRarity(event){
+        setInputRarity(event.target.value);
+    };
 
     function addAttribute(){
         dispatch({
@@ -46,32 +46,46 @@ function AttributeLayerItem({layer, params}){
 
     return(
         <div>
-            <Grid
-            container direction="row"
-            spacing={5}
-            justifyContent={'space-between'}
-            align-items={'center'}
-            >   
-                <Grid item>
-                    <h2>Layer - {layer.layer_name}</h2>
+            <TableRow style={{minWidth: 400}}>
+                <TableCell
+                align="left"
+                sx={{minWidth: 200}}>
+                    <h1>{layer.layer_name}</h1>
+                </TableCell>
+                <TableCell
+                colSpan={4}
+                align="right"
+                sx={{minWidth: 200, pl: 20}}>
                     {rarityCheck()}
-                </Grid>
-                <Grid item>
-                <TextField
-                placeholder="Attribute Name"
-                value={inputAttribute} 
-                onChange={setAttribute}
-                />
-                <TextField
-                placeholder="Set Rarity %"
-                value={inputRarity}
-                onChange={setRarity}
-                />
-                </Grid>
-                <Grid item>
-                <Button variant="contained" onClick={addAttribute}>Add Attribute</Button>
-                </Grid>
-            </Grid>
+                </TableCell>
+            </TableRow>
+            <TableRow style={{minWidth: 400}}>
+                <TableCell>
+                    <TextField
+                    placeholder="Add a Attribute"
+                    value={inputAttribute}
+                    onChange={setAttribute}
+                    sx={{minWidth: 100}}
+                    />
+                </TableCell>
+                <TableCell
+                align="center">
+                    <TextField
+                    placeholder="Set Rarity %"
+                    value={inputRarity}
+                    onChange={setRarity}
+                    sx={{minWidth: 100, pl: 2}}
+                    />
+                </TableCell>
+                <TableCell
+                align="right">
+                    <Button variant="outlined" 
+                    onClick={addAttribute}
+                    sx={{height: 50, color: '#00ADB5', borderColor: '#00ADB5', mr: 10}}>
+                        Add Attribute
+                        </Button>
+                </TableCell>
+            </TableRow>
         </div>
     )
 };

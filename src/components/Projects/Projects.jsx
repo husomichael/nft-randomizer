@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
-import {TextField, Button, Table, TableContainer, TableRow, TableCell, TableHead, Grid, Box} from '@mui/material';
+import {TextField, Typography, Button, Table, TableContainer, TableRow, TableCell, TableHead, Grid, Box} from '@mui/material';
 import ProjectItem from '../ProjectItem/ProjectItem.jsx';
 
 
@@ -46,6 +46,16 @@ function Projects(){
 
     return(
         <div>
+            <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            minHeight="0vh"
+            >
+            <Typography variant="h2" component="div" >
+                Start by adding a project.
+            </Typography>
+            </Box>
             <Box
             display="flex"
             justifyContent="center"

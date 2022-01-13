@@ -1,7 +1,7 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {useState, useEffect} from 'react';
 import {useHistory, useParams} from 'react-router-dom';
-import {Paper, Box, Button, Table, TableContainer, TableHead, TableBody, TableRow, TableCell} from '@mui/material';
+import {Paper, Typography, Box, Button, Table, TableContainer, TableHead, TableBody, TableRow, TableCell} from '@mui/material';
 
 function CheckInputs(){
 
@@ -51,28 +51,44 @@ function CheckInputs(){
     };
 
     function downloadCsv(){
-        if (random == []){
             return (
-                <button>Generating CSV...</button>
+            <Button 
+            variant='outlined' 
+            justify-content="center" 
+            sx={{height: 55, color: '#5DBB63', borderColor: '#5DBB63',}}
+            onClick={() => downloadBlob(csv, 'export.csv', 'text/csv;charset=utf-8;')}>Download CSV</Button>
             )
-        }else{
-            return (
-            <Button variant='contained' justify-content="center" onClick={() => downloadBlob(csv, 'export.csv', 'text/csv;charset=utf-8;')}>Download CSV</Button>
-            )
-        }
     }
 
     return(
         <div>
+            <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            minHeight="0vh"
+            >
+            <Typography variant="h2" component="div" >
+                Results
+            </Typography>
+            </Box>
+            <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            minHeight="20vh"
+            >
             <TableContainer 
-            style={{ maxHeight: 750,}}
+            style={{ maxHeight: 750, maxWidth: 1000}}
             justify="center">
-                <Table stickyHeader>
+                <Table 
+                stickyHeader>
                     {rows.map(row =>{
                         if(row == rows[0]){
                             return(
                                 <TableHead>
-                                    <TableRow>
+                                    <TableRow
+                                    sx={{backgroundColor: '#222831'}}>
                                     {row.map(cell =>{
                                         return(
                                             <TableCell>
@@ -99,7 +115,18 @@ function CheckInputs(){
                     })}
                 </Table>
             </TableContainer>
-            <Box textAlign='center'>
+            </Box>
+            <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            minHeight="0vh"
+            sx={{mt: 2}}>
+                <Button 
+                variant="outlined"
+                sx={{height: 55, color: '#00ADB5', borderColor: '#00ADB5', mr: 77}}
+                onClick={goToCheckInputs}>Back To CheckInputs
+                </Button>
                 {downloadCsv()}
             </Box>
         </div>

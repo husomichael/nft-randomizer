@@ -1,7 +1,7 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
-import {List, ListItem, Button, Grid, Paper, Box} from '@mui/material';
+import {List, ListItem, Button, Grid, Paper, Box, TableCell, TableRow} from '@mui/material';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content'
 
@@ -51,31 +51,35 @@ function AttributeItem({attribute}){
     };
 
     return(
-        <div>
-            <Grid 
-            container direction="row" 
-            spacing={0} 
-            justifyContent={'space-between'}
-            align-items={'center'}
-            >
-                <Grid item >
-                    <b>{attribute.attribute_name}  {attribute.rarity_value}%</b>
-                </Grid>
-                <Grid 
-                container direction="row" 
-                spacing={0} 
-                justifyContent={'flex-end'}
-                align-items={'center'}
-                >
-                    <Grid item>
-                        <Button variant='outlined' onClick={() => history.push(`/editattribute/${attribute.id}`)}>Edit</Button>
-                    </Grid>
-                    <Grid item>
-                        <Button variant='outlined' onClick={deleteAttribute}>Delete</Button>
-                    </Grid>
-                </Grid>
-            </Grid>
-        </div>
+        <TableRow
+          sx={{minWidth: 400}}>
+            <TableCell
+            sx={{minWidth: 100, width: 130}}>
+              <b>{attribute.attribute_name}</b>
+            </TableCell>
+            <TableCell
+            sx={{minWidth: 100, width: 130}}>
+              <b>{attribute.rarity_value}%</b>
+            </TableCell>
+            <TableCell
+            sx={{minWidth: 100, width: 130, pr: 0, pl: 6}}
+            align="right">
+              <Button variant='outlined'
+              sx={{color: '#ba8f00', borderColor: '#ba8f00'}} 
+              onClick={() => history.push(`/editattribute/${attribute.id}`)}>
+                Edit
+              </Button>
+            </TableCell>
+            <TableCell
+            sx={{minWidth: 100, width: 130, pr: 0,}}
+            align="right">
+              <Button variant='outlined' 
+              onClick={deleteAttribute}
+              sx={{color: '#C21E56', borderColor: '#C21E56'}}>
+                Delete
+              </Button>
+            </TableCell>
+        </TableRow>
     )
 };
 

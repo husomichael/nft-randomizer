@@ -67,12 +67,12 @@ function ProjectItem({project}){
         <div>
             <TableCell align="center" 
             style={{width: 500}}
-            sx={{fontSize: 18}}>
+            sx={{fontSize: 18, pr: 25}}>
             {project.project_name}
             </TableCell>
             <TableCell align="right" style={{width: 80}}>
             <Button variant="outlined"
-            sx={{color: '#FFC300', borderColor: '#FFC300'}} 
+            sx={{color: '#ba8f00', borderColor: '#ba8f00'}} 
             onClick={() => history.push(`/editproject/${project.id}`)}>Edit</Button>
             </TableCell>
             <TableCell align="right" style={{width: 80}}>
@@ -83,7 +83,7 @@ function ProjectItem({project}){
             <TableCell align="right" style={{width: 80}}>
             <Button 
               variant="outlined"
-              sx={{color: '#00ADB5', borderColor: '#00ADB5'}}
+              sx={{color: '#5DBB63', borderColor: '#5DBB63'}}
               onClick={selectProject}>Select
             </Button>
             </TableCell>
