@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import {Typography} from '@mui/material';
 import './LandingPage.css';
 
 // CUSTOM COMPONENTS
@@ -16,23 +17,24 @@ function LandingPage() {
   return (
     <div className="container"
     style={{fontFamily: 'Roboto'}}>
-      <h2>{heading}</h2>
+      <Typography variant="h3" sx={{ml: 45, mt: 5}}>{heading}</Typography>
 
       <div className="grid">
-        <div className="grid-col grid-col_8"
-        style={{fontFamily: 'Roboto'}}>
-          <p>
+        <div className="grid-col grid-col_7">
+          <Typography
+          sx={{width: 550, ml: 45, mt: 3}}>
             This app is for digital artists wanting to randomize their NFT photoshop
             layers and attributes. Eliminating one hurdle on the way to getting user's
             art onto a blockchain. This app takes in layer names, attribute names,
-            desired rarity values, and the amount to be minted and returns the user
+            desired rarity values, the amount to be minted, and returns the user
             a randomized CSV file with each row gauranteed to be unique. The user can
-            then plug the CSV file into photoshop and watch their NFTs come to life.
-          </p>
+            then plug the CSV file into Photoshop and watch their NFTs come to life.
+          </Typography>
 
-          <p>
-            To get started, register an account and login.
-          </p>
+          <Typography
+          sx={{mt:5, ml: 45}}>
+            <b>To get started, register an account and login.</b>
+          </Typography>
         </div>
         <div className="grid-col grid-col_4"
         style={{fontFamily: 'Roboto'}}>

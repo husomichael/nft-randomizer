@@ -71,6 +71,7 @@ function AttributeLayerItem({layer, params}){
                 <TableCell
                 align="center">
                     <TextField
+                    type="number"
                     placeholder="Set Rarity %"
                     value={inputRarity}
                     onChange={setRarity}

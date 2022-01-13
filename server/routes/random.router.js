@@ -7,7 +7,10 @@ function randomInt(){
     return Math.floor(Math.random() * 100) + 1
 };
 
-//POST details for randomization.
+/*
+This is where the magic happens.
+/random POST for returning randomized values based on desired rarity.
+*/
 router.post('/', (req, res) => {
     let project = req.body;
     let returnArray = [];
@@ -43,7 +46,7 @@ router.post('/', (req, res) => {
                     rowArray.push(attribute.attribute_name);
                     //Increase floor for rarity range.
                     rarityRange+= attribute.rarity_value;
-                //If attribute is tied to layer but not within rarity range.
+                //ELSE, If attribute is tied to layer but not within rarity range.
                 }else if(attribute.layer_id == layer.id){
                     //Increase floor for rarity range.
                     rarityRange += attribute.rarity_value;
@@ -86,7 +89,6 @@ router.post('/', (req, res) => {
         //Reset row array for next row.
         rowArray = [];
     };//End mint number for loop
-    console.log('returnArray:', returnArray);
     //Send client randomized values.
     res.send(returnArray);
 });//End /random POST

@@ -29,11 +29,13 @@ function Projects(){
     };
 
     function addProject(){
-        dispatch({
-            type: 'ADD_PROJECT',
-            payload: inputProject
-        });
-        setInputProject('');
+        if(inputProject != ''){
+            dispatch({
+                type: 'ADD_PROJECT',
+                payload: inputProject
+            });
+            setInputProject('');
+        }
     };
 
     function goToLayers(){

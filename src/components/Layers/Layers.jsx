@@ -40,11 +40,13 @@ function Layers(){
     };
 
     function addLayer(){
-        dispatch({
-            type: 'ADD_LAYER',
-            payload: {layer: inputLayer, project: params.id}
-        });
-        setInputLayer('');
+        if(inputLayer != ''){
+            dispatch({
+                type: 'ADD_LAYER',
+                payload: {layer: inputLayer, project: params.id}
+            });
+            setInputLayer('');
+        }
     };
 
     function goToAttributes(){
