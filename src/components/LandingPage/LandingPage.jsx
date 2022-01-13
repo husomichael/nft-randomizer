@@ -14,11 +14,13 @@ function LandingPage() {
   };
 
   return (
-    <div className="container">
+    <div className="container"
+    style={{fontFamily: 'Roboto'}}>
       <h2>{heading}</h2>
 
       <div className="grid">
-        <div className="grid-col grid-col_8">
+        <div className="grid-col grid-col_8"
+        style={{fontFamily: 'Roboto'}}>
           <p>
             This app is for digital artists wanting to randomize their NFT photoshop
             layers and attributes. Eliminating one hurdle on the way to getting user's
@@ -32,7 +34,8 @@ function LandingPage() {
             To get started, register an account and login.
           </p>
         </div>
-        <div className="grid-col grid-col_4">
+        <div className="grid-col grid-col_4"
+        style={{fontFamily: 'Roboto'}}>
           <RegisterForm />
 
           <center>

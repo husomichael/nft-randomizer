@@ -13,7 +13,7 @@ function Footer() {
     display="flex"
     justifyContent="center"
     alignItems="center"
-    minHeight="65vh"
+    minHeight="81vh"
     >
     <footer>
       &copy; Michael Huso

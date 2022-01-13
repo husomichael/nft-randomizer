@@ -42,7 +42,8 @@ function App() {
     <Router>
       <div
       style={{
-        backgroundColor: '#EEEEEE'
+        backgroundColor: '#EEEEEE',
+        fontFamily: 'Roboto'
       }}>
         <Nav />
         <Switch>

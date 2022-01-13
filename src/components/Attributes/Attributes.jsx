@@ -80,7 +80,8 @@ function Attributes(){
             </Typography>
             </Box>
             <Grid container direction="row"
-            spacing={0}>
+            spacing={0}
+            sx={{ml: 12}}>
                 {layers.map(layer =>{
                 if(layer.project_id == params.id)
                 return(

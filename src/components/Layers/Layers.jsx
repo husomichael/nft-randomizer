@@ -87,7 +87,7 @@ function Layers(){
             display="flex"
             justifyContent="center"
             alignItems="center"
-            minHeight="40vh"
+            minHeight="45vh"
             >
             <TableContainer style={{maxWidth: 800}} 
             textalign="center">

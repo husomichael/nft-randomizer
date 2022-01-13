@@ -55,7 +55,7 @@ function AttributeLayerItem({layer, params}){
                 <TableCell
                 colSpan={4}
                 align="right"
-                sx={{minWidth: 200, pl: 20}}>
+                sx={{minWidth: 200, pr: 12}}>
                     {rarityCheck()}
                 </TableCell>
             </TableRow>

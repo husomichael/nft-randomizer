@@ -8,7 +8,8 @@ function Nav() {
   const user = useSelector((store) => store.user);
 
   return (
-    <div className="nav">
+    <div className="nav"
+    style={{fontFamily: 'Roboto'}}>
       <Link to="/home">
         <h2 className="nav-title">NFT Randomizer</h2>
       </Link>
