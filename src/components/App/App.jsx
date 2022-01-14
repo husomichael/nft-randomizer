@@ -152,7 +152,7 @@ function App() {
         </Switch>
         <Footer />
       </div>
-      </Router>
+    </Router>
   );
 };
 

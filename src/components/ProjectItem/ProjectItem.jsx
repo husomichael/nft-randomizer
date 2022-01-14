@@ -8,87 +8,106 @@ const MySwal = withReactContent(Swal)
 
 function ProjectItem({project}){
 
-    const dispatch = useDispatch();
-    const history = useHistory();
-    const projects = useSelector(store => store.projects);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const projects = useSelector(store => store.projects);
 
-    function selectProject(){
-        if(projects == []){
-            dispatch({
-                type: 'SELECT_PROJECT',
-                payload: project.id
-            });
-        }else{
-            dispatch({
-                type: 'CHANGE_PROJECT',
-                payload: project.id
-            });
-        };
-        history.push(`/layers/${project.id}`);
+  function selectProject(){
+    if(projects == []){
+      dispatch({
+          type: 'SELECT_PROJECT',
+          payload: project.id
+      });
+    }else{
+      dispatch({
+          type: 'CHANGE_PROJECT',
+          payload: project.id
+      });
     };
+      history.push(`/layers/${project.id}`);
+  };
 
-    function deleteProject(){
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-              confirmButton: 'btn btn-success',
-              cancelButton: 'btn btn-danger'
-            },
-            buttonsStyling: false
-          })
-          
-          swalWithBootstrapButtons.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'No, cancel!',
-            reverseButtons: true
-          }).then((result) => {
-            if (result.isConfirmed) {
-                dispatch({
-                    type: 'DELETE_PROJECT',
-                    payload: project.id
-                });
-                swalWithBootstrapButtons.fire(
-                    'Deleted!',
-              )
-            } else if (
-              result.dismiss === Swal.DismissReason.cancel
-            ) {
-              swalWithBootstrapButtons.fire(
-                'Cancelled',
-              )
-            }
-          })
-    };
+  function deleteProject(){
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+    
+    swalWithBootstrapButtons.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+    if (result.isConfirmed) {
+      dispatch({
+        type: 'DELETE_PROJECT',
+        payload: project.id
+      });
+        swalWithBootstrapButtons.fire(
+            'Deleted!',
+        )
+      } else if (
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelled',
+        )
+      }
+    })
+  };
 
-    return(
-        <div>
-            <TableCell align="center" 
-            style={{width: 500}}
-            sx={{fontSize: 18, pr: 25}}>
-            {project.project_name}
-            </TableCell>
-            <TableCell align="right" style={{width: 80}}>
-            <Button variant="outlined"
-            sx={{color: '#ba8f00', borderColor: '#ba8f00'}} 
-            onClick={() => history.push(`/editproject/${project.id}`)}>Edit</Button>
-            </TableCell>
-            <TableCell align="right" style={{width: 80}}>
-            <Button variant="outlined" 
-            sx={{color: '#C21E56', borderColor: '#C21E56'}}
-            onClick={deleteProject}>Delete</Button>
-            </TableCell>
-            <TableCell align="right" style={{width: 80}}>
-            <Button 
-              variant="outlined"
-              sx={{color: '#5DBB63', borderColor: '#5DBB63'}}
-              onClick={selectProject}>Select
-            </Button>
-            </TableCell>
-        </div>
-    )
+  return(
+    <div>
+      <TableCell 
+        align="center" 
+        style={{width: 500}}
+        sx={{fontSize: 18, pr: 25}}
+      >
+        {project.project_name}
+      </TableCell>
+      <TableCell 
+        align="right" 
+        style={{width: 80}}
+      >
+        <Button 
+          variant="outlined"
+          sx={{color: '#ba8f00', borderColor: '#ba8f00'}} 
+          onClick={() => history.push(`/editproject/${project.id}`)}
+        >
+          Edit
+        </Button>
+      </TableCell>
+      <TableCell 
+        align="right" 
+        style={{width: 80}}
+      >
+        <Button 
+        variant="outlined" 
+        sx={{color: '#C21E56', borderColor: '#C21E56'}}
+        onClick={deleteProject}
+        >
+          Delete
+        </Button>
+      </TableCell>
+      <TableCell 
+        align="right" 
+        style={{width: 80}}
+      >
+        <Button 
+          variant="outlined"
+          sx={{color: '#5DBB63', borderColor: '#5DBB63'}}
+          onClick={selectProject}>Select
+        </Button>
+      </TableCell>
+    </div>
+  )
 };
 
 export default ProjectItem;

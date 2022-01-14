@@ -1,9 +1,10 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {rejectUnauthenticated} = require('../modules/authentication-middleware');
 
 //GET projects from database for selected user_id.
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     const queryText= `
         SELECT * FROM "projects"
         WHERE "user_id"=$1
@@ -19,11 +20,11 @@ router.get('/', (req, res) => {
 });
 
 //POST project to database.
-router.post('/', (req, res) => {
-    console.log('project post')
-    const project = req.body.project
-    console.log('req.body:', req.body);
-    console.log('req.user:', req.user);
+router.post('/', rejectUnauthenticated, (req, res) => {
+    // console.log('project post')
+    // const project = req.body.project
+    // console.log('req.body:', req.body);
+    // console.log('req.user:', req.user);
     const queryText = `
     INSERT INTO "projects" ("project_name", "user_id", "is_current")
     VALUES ($1, $2, $3);
@@ -44,7 +45,7 @@ router.post('/', (req, res) => {
 });
 
 //DELETE project from database.
-router.delete('/:id', (req, res) =>{
+router.delete('/:id', rejectUnauthenticated, (req, res) =>{
     console.log('**** project delete ****');
     const projectToDelete = req.params.id
     console.log('req.params:', req.params);
@@ -63,7 +64,7 @@ router.delete('/:id', (req, res) =>{
 });
 
 //GET selected project from database.
-router.get('/select', (req, res) =>{
+router.get('/select', rejectUnauthenticated, (req, res) =>{
     console.log('*** project select get ***');
     const queryText = `
         SELECT * FROM "projects"
@@ -80,7 +81,7 @@ router.get('/select', (req, res) =>{
 });
 
 //PUT selected project to database.
-router.put('/select/:id', (req, res) => {
+router.put('/select/:id', rejectUnauthenticated, (req, res) => {
     console.log('*** project select PUT ***')
     const selectedProject = req.params.id
 
@@ -112,7 +113,7 @@ router.put('/select/:id', (req, res) => {
 });
 
 //Get one project for editing.
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', rejectUnauthenticated, (req, res) => {
     const sqlText = `
         SELECT * FROM "projects"
         WHERE "id" = $1;
@@ -131,7 +132,7 @@ router.get('/edit/:id', (req, res) => {
 });
 
 //Edit selected project.
-router.put('/edit/:id', (req, res) => {
+router.put('/edit/:id', rejectUnauthenticated, (req, res) => {
     const sqlText = `
         UPDATE "projects" 
         SET "project_name" = $1

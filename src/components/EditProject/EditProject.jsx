@@ -1,28 +1,23 @@
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import {TextField, Button, Table, TableContainer, TableRow, TableCell, TableHead, Grid, Box} from '@mui/material';
-
+import {TextField, Box} from '@mui/material';
 
 function EditProject() {
 
+  const history = useHistory();
+  const dispatch = useDispatch()
   const params = useParams();
-  console.log('params:')
-  console.log(params)
+  const projectToEdit = useSelector(store => store.editThisProject);
 
   useEffect(() => {
     // dispatch to a saga that will populate our
-    // editThisUser reducer
+    // edit project reducer
     dispatch({
       type: 'FETCH_ONE_PROJECT',
       payload: params.id
     })
   }, [])
-
-  const history = useHistory();
-  const dispatch = useDispatch()
-
-  const projectToEdit = useSelector(store => store.editThisProject)
 
   const handleProjectNameChange = (e) => {
     dispatch({
@@ -56,45 +51,47 @@ function EditProject() {
   return (
     <div>
       <Box
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            minHeight="15vh"
-            >
-      <h2>Edit Project</h2>
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minHeight="15vh"
+      >
+        <h2>Edit Project</h2>
       </Box>
       <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      minHeight="0vh"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minHeight="0vh"
       >
         <form onSubmit={handleSubmit}>
-        <TextField
-          placeholder='Project Name'
-          value={projectToEdit.projectName || ''}
-          onChange={handleProjectNameChange} 
-          sx={{mr: 3, width: 250}}
-        />
-        <button className="btn" >
-            Update Project
-        </button>
-      </form>
+          <TextField
+            placeholder='Project Name'
+            value={projectToEdit.projectName || ''}
+            onChange={handleProjectNameChange} 
+            sx={{mr: 3, width: 250}}
+          />
+          <button className="btn" >
+              Update Project
+          </button>
+        </form>
       </Box>
       <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      minHeight="20vh"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minHeight="20vh"
       >
-      <button className="cancel_btn"
-        onClick={handleCancel}>
-        Cancel
-      </button>
+        <button 
+          className="cancel_btn"
+          onClick={handleCancel}
+        >
+          Cancel
+        </button>
       </Box>
     </div>
   );
-}
+};
 
 
 export default EditProject;

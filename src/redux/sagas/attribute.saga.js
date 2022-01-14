@@ -3,7 +3,6 @@ import axios from 'axios';
 
 function* addAttribute(action){
     const selectedLayer = action.payload.layer
-    console.log('addAttribute payload:', action.payload);
     try{
         const response = yield axios({
             method: 'POST',
@@ -20,7 +19,6 @@ function* addAttribute(action){
 };
 
 function* getAttributes(action){
-    console.log('in getAttributes');
     try{
         const response = yield axios({
             method: 'GET',
@@ -36,7 +34,6 @@ function* getAttributes(action){
 };
 
 function* deleteAttribute(action){
-    console.log('in deleteAttribute');
     try{
         const response = yield axios({
             method: 'DELETE',
@@ -68,7 +65,6 @@ function* fetchOneAttribute(action) {
   
 function* editAttribute(action) {
     try{
-        console.log('editAttribute action.payload', action.payload)
         yield axios({
             method: 'PUT',
             url: `/api/attributes/edit/${action.payload.id}`,

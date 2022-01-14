@@ -2,7 +2,6 @@ import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
 function* addProject(action){
-    console.log('addProject payload:', action.payload);
     try{
         const response = yield axios({
             method: 'POST',
@@ -18,7 +17,6 @@ function* addProject(action){
 };
 
 function* getProjects(){
-    console.log('in getProjects');
     try{
         const response = yield axios({
             method: 'GET',
@@ -34,7 +32,6 @@ function* getProjects(){
 };
 
 function* deleteProject(action){
-    console.log('in deleteProject');
     try{
         const response = yield axios({
             method: 'DELETE',
@@ -66,7 +63,6 @@ function* fetchOneProject(action) {
   
 function* editProject(action) {
     try{
-        console.log('editProject action.payload', action.payload)
         yield axios({
             method: 'PUT',
             url: `/api/projects/edit/${action.payload.id}`,

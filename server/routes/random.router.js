@@ -1,4 +1,5 @@
 const express = require('express');
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
 
@@ -11,7 +12,7 @@ function randomInt(){
 This is where the magic happens.
 /random POST for returning randomized values based on desired rarity.
 */
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     let project = req.body;
     let returnArray = [];
     let rowArray = [];
@@ -84,6 +85,7 @@ router.post('/', (req, res) => {
         };//end for of returnArray uniqueness check loop.
         //if no duplicate, push row to returnArray.
         if (dupe == false){
+            
             returnArray.push(rowArray);
         };
         //Reset row array for next row.

@@ -1,8 +1,6 @@
 import {useDispatch, useSelector} from 'react-redux';
-import {useState, useEffect} from 'react';
-import {useHistory} from 'react-router-dom';
-import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
-import {TextField, Button, Table, TableContainer, TableRow, TableCell, TableHead, Grid, Box} from '@mui/material';
+import {useState} from 'react';
+import {TextField, Button,TableRow, TableCell} from '@mui/material';
 
 function AttributeLayerItem({layer, params}){
 
@@ -26,7 +24,6 @@ function AttributeLayerItem({layer, params}){
         }
     }
 
-
     function setAttribute(event){
         setInputAttribute(event.target.value);
     };
@@ -48,43 +45,51 @@ function AttributeLayerItem({layer, params}){
         <div>
             <TableRow style={{minWidth: 400}}>
                 <TableCell
-                align="left"
-                sx={{minWidth: 200}}>
+                    align="left"
+                    sx={{minWidth: 200}}
+                >
                     <h1>{layer.layer_name}</h1>
                 </TableCell>
                 <TableCell
-                colSpan={4}
-                align="right"
-                sx={{minWidth: 200, pr: 12}}>
+                    colSpan={4}
+                    align="right"
+                    sx={{minWidth: 200, pr: 12}}
+                >
                     {rarityCheck()}
                 </TableCell>
             </TableRow>
-            <TableRow style={{minWidth: 400}}>
+            <TableRow 
+                style={{minWidth: 400}}
+            >
                 <TableCell>
                     <TextField
-                    placeholder="Add a Attribute"
-                    value={inputAttribute}
-                    onChange={setAttribute}
-                    sx={{minWidth: 100}}
+                        placeholder="Add an Attribute"
+                        value={inputAttribute}
+                        onChange={setAttribute}
+                        sx={{minWidth: 100}}
                     />
                 </TableCell>
                 <TableCell
-                align="center">
+                    align="center"
+                >
                     <TextField
-                    type="number"
-                    placeholder="Set Rarity %"
-                    value={inputRarity}
-                    onChange={setRarity}
-                    sx={{minWidth: 100, pl: 2}}
+                        type="number"
+                        placeholder="Set Rarity %"
+                        value={inputRarity}
+                        onChange={setRarity}
+                        sx={{minWidth: 100, pl: 2}}
                     />
                 </TableCell>
                 <TableCell
-                align="right">
-                    <Button variant="outlined" 
-                    onClick={addAttribute}
-                    sx={{height: 50, color: '#00ADB5', borderColor: '#00ADB5', mr: 10}}>
+                    align="right"
+                >
+                    <Button 
+                        variant="outlined" 
+                        onClick={addAttribute}
+                        sx={{height: 50, color: '#00ADB5', borderColor: '#00ADB5', mr: 10}}
+                    >
                         Add Attribute
-                        </Button>
+                    </Button>
                 </TableCell>
             </TableRow>
         </div>

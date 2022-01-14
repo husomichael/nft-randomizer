@@ -1,9 +1,10 @@
 const express = require('express');
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
 
 //GET layers from database for selected user_id.
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     const queryText= `
         SELECT * FROM "layers"
         WHERE "user_id"=$1
@@ -19,7 +20,7 @@ router.get('/', (req, res) => {
 });
 
 //POST layer to database.
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     console.log('layer post', req.body)
     const layer = req.body.layer
     console.log('req.body:', req.body);
@@ -44,7 +45,7 @@ router.post('/', (req, res) => {
 });
 
 //DELETE layer from database.
-router.delete('/:id', (req, res) =>{
+router.delete('/:id', rejectUnauthenticated, (req, res) =>{
     console.log('**** layer delete ****');
     const layerToDelete = req.params.id
     console.log('req.params:', req.params);
@@ -63,7 +64,7 @@ router.delete('/:id', (req, res) =>{
 });
 
 //Get one layer for editing.
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', rejectUnauthenticated, (req, res) => {
     const sqlText = `
         SELECT * FROM "layers"
         WHERE "id" = $1;
@@ -82,7 +83,7 @@ router.get('/edit/:id', (req, res) => {
 });
 
 //Edit selected layer.
-router.put('/edit/:id', (req, res) => {
+router.put('/edit/:id', rejectUnauthenticated, (req, res) => {
     const sqlText = `
         UPDATE "layers" 
         SET "layer_name" = $1

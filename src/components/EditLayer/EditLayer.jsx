@@ -1,26 +1,23 @@
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import {TextField, Button, Table, TableContainer, TableRow, TableCell, TableHead, Grid, Box} from '@mui/material';
-
+import {TextField, Box} from '@mui/material';
 
 function EditLayer() {
 
+  const history = useHistory();
+  const dispatch = useDispatch()
   const params = useParams();
-  console.log('params:')
-  console.log(params)
+  const layerToEdit = useSelector(store => store.editThisLayer);
 
   useEffect(() => {
+    // dispatch to a saga that will populate our
+    // edit layer reducer
     dispatch({
       type: 'FETCH_ONE_LAYER',
       payload: params.id
     })
   }, [])
-
-  const history = useHistory();
-  const dispatch = useDispatch()
-
-  const layerToEdit = useSelector(store => store.editThisLayer)
 
   const handleLayerNameChange = (e) => {
     dispatch({
@@ -48,51 +45,52 @@ function EditLayer() {
     dispatch({
       type: 'CLEAR_EDIT_LAYER'
     })
-    history.push('/');
+    history.push(`/layers/${layerToEdit.layerProjectId}`);
   }
 
   return (
     <div>
       <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      minHeight="15vh"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minHeight="15vh"
       >
-      <h2>Edit Layer</h2>
+        <h2>Edit Layer</h2>
       </Box>
       <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      minHeight="0vh"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minHeight="0vh"
       >
         <form onSubmit={handleSubmit}>
-        <TextField
-          placeholder='Layer Name'
-          value={layerToEdit.layerName || ''}
-          onChange={handleLayerNameChange} 
-          sx={{mr: 3, width: 250}}
-        />
-        <button className="btn">
-          Update Layer
-        </button>
-      </form>
+          <TextField
+            placeholder='Layer Name'
+            value={layerToEdit.layerName || ''}
+            onChange={handleLayerNameChange} 
+            sx={{mr: 3, width: 250}}
+          />
+          <button className="btn">
+            Update Layer
+          </button>
+        </form>
       </Box>
       <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      minHeight="20vh"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minHeight="20vh"
       >
-      <button className="cancel_btn"
-        onClick={handleCancel}>
+      <button 
+        className="cancel_btn"
+        onClick={handleCancel}
+      >
         Cancel
       </button>
       </Box>
     </div>
   );
-}
-
+};
 
 export default EditLayer;

@@ -5,11 +5,14 @@ import './Nav.css';
 import { useSelector } from 'react-redux';
 
 function Nav() {
+
   const user = useSelector((store) => store.user);
 
   return (
-    <div className="nav"
-    style={{fontFamily: 'Roboto'}}>
+    <div 
+      className="nav"
+      style={{fontFamily: 'Roboto'}}
+    >
       <Link to="/home">
         <h2 className="nav-title">NFT Randomizer</h2>
       </Link>
@@ -21,7 +24,6 @@ function Nav() {
             Login / Register
           </Link>
         }
-
         {/* If a user is logged in, show these links */}
         {user.id && (
           <>
@@ -29,20 +31,15 @@ function Nav() {
               Your Projects
             </Link>
 
-            <Link className="navLink" to="/info">
-              Info Page
-            </Link>
-
             <LogOutButton className="navLink" />
           </>
         )}
-
         <Link className="navLink" to="/about">
           About
         </Link>
       </div>
     </div>
   );
-}
+};
 
 export default Nav;

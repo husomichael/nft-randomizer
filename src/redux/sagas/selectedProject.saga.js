@@ -2,13 +2,11 @@ import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
 function* getSelectedProject(action){
-    console.log('in getSelectedProject')
     try{
         const response = yield axios({
             method: 'GET',
             url: '/api/projects/select'
         })
-        console.log('getselectedproject response:', response);
         yield put({
             type: 'SET_SELECTED_PROJECT',
             payload: response.data
@@ -19,7 +17,6 @@ function* getSelectedProject(action){
 }
 
 function* changeProject(action){
-    console.log('in changeProject');
     try{
         const response = yield axios({
             method: 'PUT',

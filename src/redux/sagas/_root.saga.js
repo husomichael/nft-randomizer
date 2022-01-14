@@ -18,12 +18,12 @@ import selectedProjectSaga from './selectedProject.saga';
 export default function* rootSaga() {
   yield all([
     loginSaga(), // login saga is now registered
-    registrationSaga(),
-    userSaga(),
-    layerSaga(),
-    projectSaga(),
-    attributeSaga(),
-    randomSaga(),
-    selectedProjectSaga(),
+    registrationSaga(), //handles registration sagas
+    userSaga(), //handles user sagas
+    layerSaga(), //handles layer sagas
+    projectSaga(), //handles project sagas
+    attributeSaga(), //handles attribute sagas
+    randomSaga(), //handles the randomization saga
+    selectedProjectSaga(), //handles current project saga
   ]);
 };

@@ -1,28 +1,23 @@
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import {TextField, Button, Table, TableContainer, TableRow, TableCell, TableHead, Grid, Box} from '@mui/material';
-
+import {TextField, Box} from '@mui/material';
 
 function EditAttribute() {
 
   const params = useParams();
-  console.log('params:')
-  console.log(params)
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const attributeToEdit = useSelector(store => store.editThisAttribute);
 
   useEffect(() => {
     // dispatch to a saga that will populate our
-    // editThisUser reducer
+    // edit attribute reducer
     dispatch({
       type: 'FETCH_ONE_ATTRIBUTE',
       payload: params.id
     })
   }, [])
-
-  const history = useHistory();
-  const dispatch = useDispatch()
-
-  const attributeToEdit = useSelector(store => store.editThisAttribute)
 
   const handleAttributeNameChange = (e) => {
     dispatch({
@@ -51,66 +46,65 @@ function EditAttribute() {
     dispatch({
       type: 'CLEAR_EDIT_ATTRIBUTE'
     })
-    history.push(`/attributes/${attributeToEdit.attributeProjectId}`); //What do I do here? Go to last page visited.
-    //All other components are based on project ID for params.
-    //This component's use params are based on attribute ID.
+    history.push(`/attributes/${attributeToEdit.attributeProjectId}`);
   }
 
   const handleCancel = (e) => {
     dispatch({
       type: 'CLEAR_EDIT_ATTRIBUTE'
     })
-    history.push('/');
+    history.push(`/attributes/${attributeToEdit.attributeProjectId}`);
   }
 
   return (
     <div>
       <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      minHeight="15vh"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minHeight="15vh"
       >
-      <h2>Edit Attribute</h2>
+        <h2>Edit Attribute</h2>
       </Box>
       <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      minHeight="0vh"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minHeight="0vh"
       >
         <form onSubmit={handleSubmit}>
-        <TextField
-          placeholder='Attribute Name'
-          value={attributeToEdit.attributeName || ''}
-          onChange={handleAttributeNameChange} 
-          sx={{mr: 3, width: 250}}
-        />
-        <TextField
-          placeholder='Attribute Rarity'
-          value={attributeToEdit.attributeRarity || ''}
-          onChange={handleAttributeRarityChange} 
-          sx={{mr: 3, width: 250}}
-        />
-        <button className="btn" >
-            Update Attribute
-        </button>
-      </form>
+          <TextField
+            placeholder='Attribute Name'
+            value={attributeToEdit.attributeName || ''}
+            onChange={handleAttributeNameChange} 
+            sx={{mr: 3, width: 250}}
+          />
+          <TextField
+            placeholder='Attribute Rarity'
+            value={attributeToEdit.attributeRarity || ''}
+            onChange={handleAttributeRarityChange} 
+            sx={{mr: 3, width: 250}}
+          />
+          <button className="btn" >
+              Update Attribute
+          </button>
+        </form>
       </Box>
       <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      minHeight="20vh"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minHeight="20vh"
       >
-      <button className="cancel_btn"
-        onClick={handleCancel}>
-        Cancel
-      </button>
+        <button 
+          className="cancel_btn"
+          onClick={handleCancel}
+        >
+          Cancel
+        </button>
       </Box>
     </div>
   );
-}
-
+};
 
 export default EditAttribute;

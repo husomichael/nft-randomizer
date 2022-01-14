@@ -1,9 +1,7 @@
-import { put, takeLatest, takeEvery } from 'redux-saga/effects';
+import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
 function* addLayer(action){
-    const selectedProject = action.payload.project
-    console.log('addLayer payload:', action.payload);
     try{
         const response = yield axios({
             method: 'POST',
@@ -13,14 +11,12 @@ function* addLayer(action){
         yield put({
             type: 'GET_LAYERS',
         })
-        console.log(response);
     }catch(error){
         console.log('addLayer catch error:', error);
     };
 };
 
 function* getLayers(action){
-    console.log('in getLayers');
     try{
         const response = yield axios({
             method: 'GET',
@@ -36,7 +32,6 @@ function* getLayers(action){
 };
 
 function* deleteLayer(action){
-    console.log('in deleteLayer');
     try{
         const response = yield axios({
             method: 'DELETE',
@@ -68,7 +63,6 @@ function* fetchOneLayer(action) {
   
 function* editLayer(action) {
     try{
-        console.log('editLayer action.payload', action.payload)
         yield axios({
             method: 'PUT',
             url: `/api/layers/edit/${action.payload.id}`,

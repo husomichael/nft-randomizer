@@ -1,9 +1,10 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {rejectUnauthenticated} = require('../modules/authentication-middleware');
 
 //GET attributes from database for selected user_id.
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     const queryText= `
         SELECT * FROM "attributes"
         WHERE "user_id"=$1
@@ -19,7 +20,7 @@ router.get('/', (req, res) => {
 });
 
 //POST attribute to database
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     console.log('attribute post:', req.body);
     const queryText = `
     INSERT INTO "attributes" ("attribute_name", "rarity_value", "layer_id", "user_id", "project_id")
@@ -43,7 +44,7 @@ router.post('/', (req, res) => {
 });
 
 //DELETE attribute from database.
-router.delete('/:id', (req, res) =>{
+router.delete('/:id', rejectUnauthenticated, (req, res) =>{
     console.log('**** attribute delete ****');
     const attributeToDelete = req.params.id
     console.log('req.params:', req.params);
@@ -62,7 +63,7 @@ router.delete('/:id', (req, res) =>{
 });
 
 //Get one attribute for editing.
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', rejectUnauthenticated, (req, res) => {
     const sqlText = `
         SELECT * FROM "attributes"
         WHERE "id" = $1;
@@ -81,7 +82,7 @@ router.get('/edit/:id', (req, res) => {
 });
 
 //Edit selected attribute.
-router.put('/edit/:id', (req, res) => {
+router.put('/edit/:id', rejectUnauthenticated, (req, res) => {
     const sqlText = `
         UPDATE "attributes" 
         SET "attribute_name" = $1,
