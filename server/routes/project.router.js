@@ -21,10 +21,6 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 //POST project to database.
 router.post('/', rejectUnauthenticated, (req, res) => {
-    // console.log('project post')
-    // const project = req.body.project
-    // console.log('req.body:', req.body);
-    // console.log('req.user:', req.user);
     const queryText = `
     INSERT INTO "projects" ("project_name", "user_id", "is_current")
     VALUES ($1, $2, $3);
@@ -46,9 +42,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
 //DELETE project from database.
 router.delete('/:id', rejectUnauthenticated, (req, res) =>{
-    console.log('**** project delete ****');
     const projectToDelete = req.params.id
-    console.log('req.params:', req.params);
     const queryText = `
         DELETE FROM "projects"
         WHERE "id"=$1;
@@ -65,7 +59,6 @@ router.delete('/:id', rejectUnauthenticated, (req, res) =>{
 
 //GET selected project from database.
 router.get('/select', rejectUnauthenticated, (req, res) =>{
-    console.log('*** project select get ***');
     const queryText = `
         SELECT * FROM "projects"
         WHERE "is_current"=$1;
@@ -82,9 +75,7 @@ router.get('/select', rejectUnauthenticated, (req, res) =>{
 
 //PUT selected project to database.
 router.put('/select/:id', rejectUnauthenticated, (req, res) => {
-    console.log('*** project select PUT ***')
     const selectedProject = req.params.id
-
     //Set all is_current values to false, so only 1 can be true at a time.
     const queryTextRemove = `
     UPDATE "projects"

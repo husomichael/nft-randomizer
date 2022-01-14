@@ -21,10 +21,6 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 //POST layer to database.
 router.post('/', rejectUnauthenticated, (req, res) => {
-    console.log('layer post', req.body)
-    const layer = req.body.layer
-    console.log('req.body:', req.body);
-    console.log('req.user:', req.user);
     const queryText = `
     INSERT INTO "layers" ("layer_name", "project_id", "user_id")
     VALUES ($1, $2, $3);
@@ -46,9 +42,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
 //DELETE layer from database.
 router.delete('/:id', rejectUnauthenticated, (req, res) =>{
-    console.log('**** layer delete ****');
     const layerToDelete = req.params.id
-    console.log('req.params:', req.params);
     const queryText = `
         DELETE FROM "layers"
         WHERE "id"=$1;

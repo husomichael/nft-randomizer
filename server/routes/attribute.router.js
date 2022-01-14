@@ -21,7 +21,6 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 //POST attribute to database
 router.post('/', rejectUnauthenticated, (req, res) => {
-    console.log('attribute post:', req.body);
     const queryText = `
     INSERT INTO "attributes" ("attribute_name", "rarity_value", "layer_id", "user_id", "project_id")
     VALUES ($1, $2, $3, $4, $5);
@@ -45,9 +44,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
 //DELETE attribute from database.
 router.delete('/:id', rejectUnauthenticated, (req, res) =>{
-    console.log('**** attribute delete ****');
     const attributeToDelete = req.params.id
-    console.log('req.params:', req.params);
     const queryText = `
         DELETE FROM "attributes"
         WHERE "id"=$1;
