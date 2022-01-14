@@ -54,13 +54,35 @@ Before you get started, make sure you have the following software installed on y
 - [PostrgeSQL](https://www.postgresql.org/)
 - [Nodemon](https://nodemon.io/)
 
-Create a new database called `nft_randomizer` and create a `user` table:
+Create a new database called `nft_randomizer` and create the tables needed by running the follow SQL statements:
 
 ```SQL
     CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
     "password" VARCHAR (1000) NOT NULL
+);
+--Table for projects. All projects are linked via foreign keys to a specific user.
+CREATE TABLE "projects" (
+  "id" SERIAL PRIMARY KEY,
+  "project_name" VARCHAR(120) NOT NULL,
+  "user_id"  INT REFERENCES "user" ON DELETE CASCADE
+);
+--Table for layers. All layers are linked to a specific user and specific project of that user.
+CREATE TABLE "layers" (
+  "id" SERIAL PRIMARY KEY,
+  "layer_name" VARCHAR(120) NOT NULL,
+  "project_id"  INT REFERENCES "projects" ON DELETE CASCADE,
+  "user_id"  INT REFERENCES "user" ON DELETE CASCADE
+);
+--Table for attributes. All attributes are linked to a specific user, specific project of that user, and specific layer of that project.
+CREATE TABLE "attributes" (
+  "id" SERIAL PRIMARY KEY,
+  "attribute_name" VARCHAR(120) NOT NULL,
+  "rarity_value" INT NOT NULL,
+  "layer_id"  INT REFERENCES "layers" ON DELETE CASCADE,
+  "user_id"  INT REFERENCES "user" ON DELETE CASCADE,
+  "project_id" INT REFERENCES "projects" ON DELETE CASCADE
 );
 ```
 
