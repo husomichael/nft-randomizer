@@ -11,7 +11,8 @@ CREATE TABLE "user" (
 CREATE TABLE "projects" (
   "id" SERIAL PRIMARY KEY,
   "project_name" VARCHAR(120) NOT NULL,
-  "user_id"  INT REFERENCES "user" ON DELETE CASCADE
+  "is_current" BOOLEAN,
+  "user_id" INT REFERENCES "user" ON DELETE CASCADE
 );
 --Table for layers. All layers are linked to a specific user and specific project of that user.
 CREATE TABLE "layers" (
